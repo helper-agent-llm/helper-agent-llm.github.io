@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q75H4YSQ8M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q75H4YSQ8M');
+    </script>
+    <!-- Adapted from Dave Epstein's BlogGAN webpage template: https://dave.ml/blobgan/ -->
+    <title>Brain Dissection: fMRI-trained Networks Reveal Spatial Selectivity in the Processing of Natural Images
+    </title>
+    <!-- <link rel="icon" type="image/x-icon" href="/images/logo_ai.png"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        }
+
+        .cite {
+            padding: 0px;
+            background: #ffffff;
+            font-size: 18px
+        }
+
+        .card {
+            border: 1px solid #ccc
+        }
+
+        /* img { margin-bottom:-6px;} */
+        p {
+            font-size: 18px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Brain Dissection: fMRI-trained Networks Reveal Spatial Selectivity in the Processing of Natural Images">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f5ece5">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#276FBF">
+    <meta name="msapplication-TileColor" content="#276FBF">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            font-family: 'GT Ultra', sans-serif !important;
+            font-weight: 200;
+            font-size: 18px;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            color: #1f1e1d;
+            background-color: #f5ece5;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        a {
+            /* color: #276FBF !important; */
+            color: #276FBF;
+            text-decoration: none;
+            font-weight: 300;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            /* color: #184477 !important; */
+            color: #184477;
+        }
+
+        section h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        section h5,
+        section h3 {
+            justify-content: space-between;
+
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
+    <style>
+        .outer {
+            width: 100%;
+            height: 200px;
+            background-color: red;
+        }
+
+        .inner {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            color: white;
+            cursor: crosshair;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .inner_cat {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            color: white;
+            cursor: crosshair;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log_cat {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .inner_sn {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            color: white;
+            cursor: crosshair;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log_sn {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .inner_gc {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            color: white;
+            cursor: crosshair;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log_gc {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .inner_shading {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            color: white;
+            cursor: crosshair;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log_shading {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .inner_gqa {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            color: white;
+            cursor: crosshair;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log_gqa {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .inner_demo {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            color: white;
+            cursor: crosshair;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log_demo {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* .demo_gif {
+        position: relative;
+        width: 50%;
+        text-align: center;
+        margin: auto;
+        } */
+    </style>
+
+
+    <style>
+        .project-links {
+            /* width: 400px;
+        height: 400px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center; */
+            max-width: 600px;
+            margin: 0 auto;
+            align-items: center;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+
+    <!-- Paper button -->
+    <style>
+        .btn-paper {
+            width: 95px;
+            height: 35px;
+            cursor: pointer;
+            border-radius: 25px;
+            background: transparent;
+            border: 2px solid #91C9FF;
+            outline: none;
+            transition: 1s ease-in-out;
+            text-decoration: none;
+            align-items: center;
+            display: flex;
+            text-align: center;
+            font-weight: 500;
+            color: black;
+        }
+
+        .btn-paper:hover {
+            transition: 0.75s ease-in-out;
+            background: #8bb2ff1e;
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+        }
+
+        .vertical-center-paper {
+            height: 80%;
+            position: relative;
+            /* top: 0px;
+            right: 0;
+            float: left; */
+            padding-right: 1px;
+            padding-left: 6px;
+        }
+    </style>
+
+    <!-- Code button -->
+    <style>
+        .btn-code {
+            width: 95px;
+            height: 35px;
+            cursor: pointer;
+            border-radius: 25px;
+            background: transparent;
+            border: 2px solid #91C9FF;
+            outline: none;
+            transition: 1s ease-in-out;
+            text-decoration: none;
+            align-items: center;
+            display: flex;
+            text-align: center;
+            font-weight: 500;
+            color: black;
+        }
+
+        .btn-code:hover {
+            transition: 0.75s ease-in-out;
+            background: #8bb2ff1e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .vertical-center-code {
+            height: 60%;
+            position: relative;
+            /* top: 0px;
+            left: 0px;
+            float: left; */
+            padding-right: 8px;
+            padding-left: 10px;
+        }
+    </style>
+
+    <!-- Citation button -->
+    <style>
+        .btn-citation {
+            width: 110px;
+            height: 35px;
+            cursor: pointer;
+            border-radius: 25px;
+            background: transparent;
+            border: 2px solid #91C9FF;
+            outline: none;
+            transition: 1s ease-in-out;
+            text-decoration: none;
+            align-items: center;
+            display: flex;
+            text-align: center;
+            font-weight: 500;
+            color: black;
+        }
+
+        .btn-citation:link {
+            color: black;
+        }
+
+        .btn-citation:visited {
+            color: black;
+        }
+
+        /* .btn-citation:hover {
+            color: black;
+        } */
+        .btn-citation:active {
+            color: black;
+        }
+
+        .btn-citation:hover {
+            transition: 0.75s ease-in-out;
+            background: #8bb2ff1e;
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+        }
+
+        .vertical-center-cit {
+            height: 70%;
+            position: relative;
+            /* top: 0px;
+            right: 0;
+            float: left; */
+            padding-right: 7px;
+            padding-left: 6px;
+        }
+    </style>
+
+    <!-- Interactive button -->
+    <style>
+        .btn-interact {
+            width: 133px;
+            height: 35px;
+            cursor: pointer;
+            border-radius: 25px;
+            background: transparent;
+            border: 2px solid #91C9FF;
+            outline: none;
+            transition: 1s ease-in-out;
+            text-decoration: none;
+            align-items: center;
+            display: flex;
+            text-align: center;
+            font-weight: 500;
+            color: black;
+        }
+
+        .btn-interact:link {
+            color: black;
+        }
+
+        .btn-interact:visited {
+            color: black;
+        }
+
+        /* .btn-citation:hover {
+                color: black;
+            } */
+        .btn-interact:active {
+            color: black;
+        }
+
+        .btn-interact:hover {
+            transition: 0.75s ease-in-out;
+            background: #8bb2ff1e;
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+        }
+
+        .vertical-center-interact {
+            height: 70%;
+            position: relative;
+            /* top: 0px;
+                right: 0;
+                float: left; */
+            padding-right: 7px;
+            padding-left: 6px;
+        }
+    </style>
+
+    <style>
+        .vertical-center {
+            height: 80%;
+            position: relative;
+            top: 0px;
+            right: 0;
+            float: left;
+        }
+    </style>
+
+    <style>
+        /* The grid: Four equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 25% !important;
+            padding: 10px;
+        }
+
+        /* Style the images inside the grid */
+        .column img {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .column img:hover {
+            opacity: 1;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* The expanding image container (positioning is needed to position the close button and the text) */
+        .container {
+            position: relative;
+            display: none;
+        }
+
+        /* Expanding image text */
+        #imgtext {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Closable button inside the image */
+        .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: rgb(0, 0, 0);
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        .centered {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.26);
+        }
+
+        .text-block {
+            position: absolute;
+            /* bottom: 25px;
+        right: 20px; */
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            background-color: rgba(0, 0, 0, 0.26);
+            color: white;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .parentContainer {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="w3-white">
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top w3-margin-bottom" style="max-width:960px;">
+
+        <!-- The Grid -->
+        <div class="w3-row-padding">
+
+            <!-- paper container -->
+            <div class="w3-display-container w3-row w3-white w3-margin-bottom">
+                <div class="w3-center">
+                    <h2>Brain Dissection: fMRI-trained Networks Reveal Spatial Selectivity in the Processing of Natural
+                        Images</h2>
+                    <h5><a href="https://www.gabesarch.me">Gabriel Sarch</a> &emsp;&emsp; <a
+                            href="https://sites.google.com/andrew.cmu.edu/tarrlab/people/michael-j-tarr">Michael
+                            Tarr</a> &emsp;&emsp;
+                        <a href="https://www.cs.cmu.edu/~katef/">Katerina Fragkiadaki<sup>*</sup></a> &emsp;&emsp;
+                        <a href="https://www.cs.cmu.edu/~lwehbe/">Leila Wehbe<sup>*</sup></a>
+                    </h5>
+                    <div class="w3-center">
+                        <h5>Carnegie Mellon University</h5>
+                    </div>
+                    <div class="w3-center">
+                        <sup>*</sup>Equal Advising
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="project-links">
+                    <a href="https://biorxiv.org/cgi/content/short/2023.05.29.542635" target="_blank" class="btn-paper"
+                        role="button">
+                        <img src="images/paper.png" class="vertical-center-paper"> Paper
+                    </a>
+                    <a href="https://github.com/Gabesarch/brain-dissection" target="_blank" class="btn-code"
+                        role="button">
+                        <img src="images/code.png" class="vertical-center-code"> Code
+                    </a>
+                    <a href="#results" class="btn-interact" role="button">
+                        <img src="images/brain-clipart-lg.png" class="vertical-center-interact"> Interactive
+                    </a>
+                    <a href="#citation" class="btn-citation" role="button">
+                        <img src="images/googlescholar.png" class="vertical-center-cit"> Citation
+                    </a>
+                </div>
+
+                <br>
+                <spacer type="horizontal" width="5" height="5"> </spacer>
+                <br>
+                <!-- <div>
+                    <p><b>Hover over the brain and observe the depth selectivity (preferences)</b></p>
+                </div> -->
+                <!-- GIF: https://loading.io/asset/662945 -->
+                <!-- .demo_gif {
+                position: relative;
+                width: 50%;
+                text-align: center;
+                margin: auto;
+                } -->
+
+                <!-- <div>
+                    <img src="images/demo_gif.gif" style="text-align: center; width: 50%; display: block; margin-left: auto; margin-right: auto; margin-bottom:0; padding: 0">
+                </div>
+                <div class="inner_demo">
+                    <img src="images/normals_medians_subject1.jpg" id="absdepthdemoImg" style="width:100%">
+                </div>
+                <div class="log_demo">
+                    <p>
+                        Depth selectivity: <span id="depthdemoX">N/A</span> meters
+                    </p>
+                    <p>
+                        See <a href="#anchor-name">Results</a> below for more interactive brains!
+                    </p>
+                </div> -->
+                <!-- <div class="log_demo">
+                    <p>
+                        See <a href="#anchor-name">Results</a> below for interactive brains!
+                    </p>
+                </div> -->
+
+
+
+                <!-- <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
+                    <img src="images/Example_each_room_fast.gif" style="width:100%">
+                </div> -->
+                <hr>
+                <div class="w3-center">
+                    <h2>Abstract</h2>
+                </div>
+                <p align="justify">The alignment between deep neural network (DNN) features and cortical responses
+                    currently provides the most accurate
+                    quantitative explanation for higher visual areas. At
+                    the same time, these model features have been critiqued as uninterpretable explanations, trading one
+                    black box (the
+                    human brain) for another (a neural network). In this paper, we train networks to directly predict,
+                    from scratch, brain
+                    responses to images from a large-scale dataset of natural scenes. We then employ "network
+                    dissection" <a href="https://arxiv.org/abs/1704.05796" target="_blank">(Bau et al., 2017)</a>,
+                    a method used for enhancing neural network interpretability by identifying and localizing the
+                    most significant features in images for individual units of a trained network, and which has been
+                    used to study category
+                    selectivity in the human brain <a href="https://www.biorxiv.org/content/10.1101/2022.03.16.484578"
+                        target="_blank">(Khosla & Wehbe, 2022)</a>. We adapt this approach to create a
+                    hypothesis-neutral model that is
+                    then used to explore the tuning properties of specific visual regions beyond category selectivity,
+                    which we call "brain
+                    dissection".</p>
+                <br>
+                <!-- <spacer type="horizontal" width="1" height="1"> </spacer> -->
+                <!-- <br> -->
+                <p align="justify">We use brain dissection to examine a range of ecologically important, intermediate
+                    properties, including
+                    depth, surface normals, curvature, and object relations and find consistent feature selectivity
+                    differences across
+                    sub-regions of the parietal, lateral, and ventral visual streams. For example, in the three
+                    scene-selective network we
+                    find that RSC prefers far depths and in-plane horizontal surface normals, while OPA and PPA prefer
+                    near and mid depths
+                    and vertical surface normals, indicating a change in the spatial coordinate system used for scene
+                    representations across
+                    RSC and OPA/PPA. Such findings contribute to a deeper, more fine-grained understanding of the
+                    functional characteristics
+                    of human visual cortex when viewing natural scenes.</p>
+                <hr>
+
+                <!-- </script> -->
+                <!-- <div class="outer"> -->
+                <!-- <div class="inner">
+                    <img src="images/median_abs_depths_subject1.png" id="brain_image1" style="width:100%">
+                </div>
+                <div class="log">
+                    <p>
+                        Offset-relative: <span id="offsetX">0</span>
+                    </p>
+                </div> -->
+
+                </section>
+
+
+                <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
+                    <h2>How does brain dissection work?</h2>
+                    <p align="justify">
+                        Inspired by <a href="https://www.biorxiv.org/content/10.1101/2022.03.16.484578v2"
+                            target="_blank">Khosla & Wehbe 2022</a>, brain dissection provides a hypothesis-neutral
+                        approach for identifying the most significant image features for
+                        predicting the response of a specific voxel. </p>
+                    <br>
+                    <!-- <hr style="height:1px; visibility:hidden;" > -->
+                    <p align="justify">The method trains a convolutional neural network tailored to predict voxel
+                        responses to natural images within a defined sub-region. By training a backbone network for this
+                        sub-region and incorporating a linear
+                        readout for each voxel, the network learns to extract image features crucial for predicting each
+                        voxel
+                        (<b>Figure A below</b>). For training, we used the <a href="https://naturalscenesdataset.org/"
+                            target="_blank">Natural Scenes Dataset (NSD)</a>, which consists of high-resolution
+                        fMRI responses to naturalistic images from <a href="https://cocodataset.org/#home"
+                            target="_blank">Microsoft COCO</a>.</p>
+                    <br>
+                    <!-- <hr style="height:3px; visibility:hidden;" /> -->
+                    <p align="justify">After training, we "dissect" the network by inputting held-out images and
+                        extracting regions that
+                        the network considers most relevant for each voxel (<b>Figure B below</b>). Subsequently, we
+                        analyze properties of the
+                        voxel-selective regions within the images.
+                    </p>
+
+                    <br>
+                    <img src="images/Figure1_full_V7.png" style="width:100%">
+                    <p> </p>
+
+                    <!-- <p align="justify"><b>A. fMRI Response-Optimized Training Procedure.</b> All voxels in an ROI share a convolutional backbone. Each voxel is assigned a set of learnable spatial and feature weights. The voxel weights are applied to the output features of the backbone network to predict the voxel response for an input image. Training minimizes the mean squared error between the predicted and actual voxel response of NSD images.</p>
+                    <p align="justify"><b>B. Dissection Procedure.</b> For each voxel in an ROI and test image, we obtain the voxel's selectivity binary mask by applying the voxel's feature weights to the output of the ROI-specific backbone and thresholding the resultant feature map. We examine the overlapping region between the mask and a measurement of interest (e.g., depth map).</p> -->
+                </div>
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <hr>
+
+
+                <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
+                    <h2 id="results">Results</h2>
+                </div>
+                <div>
+                    <h3>Interactive Brain Flatmaps</h3>
+                    <p align="justify"> To gain a better understanding of how 3D structure is represented in the brain,
+                        we used brain dissection to quantify the
+                        selectivity (preference) for each voxel across the high-level visual cortex for the four spatial
+                        measures and two category datasets. This process allowed us to
+                        create a detailed selectivity (preference) map for each voxel that reveals how 2D inputs are
+                        transformed into 3D representations that
+                        enable reasoning about the physical world. Hover over the brain flatmaps below to reveal the
+                        selectivity value at that location. We rendered the voxel data on flatmap images using <a
+                            href="https://gallantlab.org/pycortex/" target="_blank">pycortex</a>.</p>
+                </div>
+                <!-- <h3>Selectivity Measures</h3> -->
+                <div>
+                    <h5>Instructions</h5>
+                    <!-- <p style="border-width:3px; border-style:solid; border-color:#b8b5b5; padding: 1em;"> -->
+                    <p style="background-color:#b8b5b51e" align="justify">
+                        <!-- Below are interactive selectivity brain flatmaps for each measure.<br> -->
+                        To observe the voxel selectivity (preference) at a location on the flatmap:<br>
+                        1. <b>Click on a subject</b><br>
+                        2. <b>Hover over a location-of-interest on the brain map</b>
+                    </p>
+                </div>
+                <br>
+
+                <!-- Absolute Depth -->
+                <h4>Depth</h4>
+                <!-- <p><b>Instructions: Click on a subject, then hover over the brain</b></p> -->
+                <!-- The grid: four columns -->
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject1.jpg" alt="median_abs_depths_subject1"
+                                onclick="myFunction(this);" style="width:100%" id="depth1">
+                            <div class="centered">Subject 1</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject2.jpg" alt="median_abs_depths_subject2"
+                                onclick="myFunction(this);" style="width:100%" id="depth2">
+                            <div class="centered">Subject 2</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject3.jpg" alt="median_abs_depths_subject3"
+                                onclick="myFunction(this);" style="width:100%" id="depth3">
+                            <div class="centered">Subject 3</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject4.jpg" alt="median_abs_depths_subject4"
+                                onclick="myFunction(this);" style="width:100%" id="depth4">
+                            <div class="centered">Subject 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject5.jpg" alt="median_abs_depths_subject5"
+                                onclick="myFunction(this);" style="width:100%" id="depth5">
+                            <div class="centered">Subject 5</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject6.jpg" alt="median_abs_depths_subject6"
+                                onclick="myFunction(this);" style="width:100%" id="depth6">
+                            <div class="centered">Subject 6</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject7.jpg" alt="median_abs_depths_subject7"
+                                onclick="myFunction(this);" style="width:100%" id="depth7">
+                            <div class="centered">Subject 7</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/median_abs_depths_subject8.jpg" alt="median_abs_depths_subject8"
+                                onclick="myFunction(this);" style="width:100%" id="depth8">
+                            <div class="centered">Subject 8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner">
+                    <img id="absdepthImg" style="width:100%">
+                </div>
+                <div class="log">
+                    <p>
+                        Depth: <span id="depthX">N/A</span> meters
+                    </p>
+                </div>
+
+                <!-- Surface Normals -->
+                <h4>Surface Normals</h4>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject1.jpg" alt="normals_medians_subject1"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn1">
+                            <div class="centered">Subject 1</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject2.jpg" alt="normals_medians_subject2"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn2">
+                            <div class="centered">Subject 2</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject3.jpg" alt="normals_medians_subject3"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn3">
+                            <div class="centered">Subject 3</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject4.jpg" alt="normals_medians_subject4"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn4">
+                            <div class="centered">Subject 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject5.jpg" alt="normals_medians_subject5"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn5">
+                            <div class="centered">Subject 5</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject6.jpg" alt="normals_medians_subject6"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn6">
+                            <div class="centered">Subject 6</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject7.jpg" alt="normals_medians_subject7"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn7">
+                            <div class="centered">Subject 7</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/normals_medians_subject8.jpg" alt="normals_medians_subject8"
+                                onclick="myFunction_sn(this);" style="width:100%" id="sn8">
+                            <div class="centered">Subject 8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner_sn">
+                    <img id="snImg" style="width:100%">
+                    <!-- <center><img style="width:30%" id="snImg2"></center> -->
+                </div>
+                <div class="log_sn">
+                    <p>
+                        Surface Normal (bin): <span id="snX">N/A</span>
+                    </p>
+                </div>
+                <div class="inner_sn">
+                    <!-- <img id="snImg" style="width:100%"> -->
+                    <center><img style="width:30%" id="snImg2"></center>
+                </div>
+                <!-- <div>
+                    <center><img src="images/surface_normal_colorbar.png" style="width:30%"></center>
+                </div> -->
+
+                <!-- Guassian Curvature -->
+                <h4>Guassian Curvature</h4>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject1.jpg"
+                                alt="guassian_curvatures_medians_subject1" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc1">
+                            <div class="centered">Subject 1</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject2.jpg"
+                                alt="guassian_curvatures_medians_subject2" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc2">
+                            <div class="centered">Subject 2</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject3.jpg"
+                                alt="guassian_curvatures_medians_subject3" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc3">
+                            <div class="centered">Subject 3</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject4.jpg"
+                                alt="guassian_curvatures_medians_subject4" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc4">
+                            <div class="centered">Subject 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject5.jpg"
+                                alt="guassian_curvatures_medians_subject5" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc5">
+                            <div class="centered">Subject 5</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject6.jpg"
+                                alt="guassian_curvatures_medians_subject6" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc6">
+                            <div class="centered">Subject 6</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject7.jpg"
+                                alt="guassian_curvatures_medians_subject7" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc7">
+                            <div class="centered">Subject 7</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/guassian_curvatures_medians_subject8.jpg"
+                                alt="guassian_curvatures_medians_subject8" onclick="myFunction_gc(this);"
+                                style="width:100%" id="gc8">
+                            <div class="centered">Subject 8</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inner_gc">
+                    <img id="gcImg" style="width:100%">
+                </div>
+                <div class="log_gc">
+                    <p>
+                        Guassian Curvature: <span id="gcX">N/A</span>
+                    </p>
+                </div>
+                <div class="inner_gc">
+                    <!-- <img id="snImg" style="width:100%"> -->
+                    <center><img style="width:30%" id="gcImg2"></center>
+                </div>
+
+                <!-- RESHADING -->
+                <h4>Shading</h4>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject1.jpg" alt="reshadings_medians_subject1"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading1">
+                            <div class="centered">Subject 1</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject2.jpg" alt="reshadings_medians_subject2"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading2">
+                            <div class="centered">Subject 2</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject3.jpg" alt="reshadings_medians_subject3"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading3">
+                            <div class="centered">Subject 3</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject4.jpg" alt="reshadings_medians_subject4"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading4">
+                            <div class="centered">Subject 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject5.jpg" alt="reshadings_medians_subject5"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading5">
+                            <div class="centered">Subject 5</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject6.jpg" alt="reshadings_medians_subject6"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading6">
+                            <div class="centered">Subject 6</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject7.jpg" alt="reshadings_medians_subject7"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading7">
+                            <div class="centered">Subject 7</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/reshadings_medians_subject8.jpg" alt="reshadings_medians_subject8"
+                                onclick="myFunction_shading(this);" style="width:100%" id="shading8">
+                            <div class="centered">Subject 8</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inner_shading">
+                    <img id="shadingImg" style="width:100%">
+                </div>
+                <div class="log_shading">
+                    <p>
+                        Shading: <span id="shadingX">N/A</span>
+                    </p>
+                </div>
+                <div class="inner_shading">
+                    <!-- <img id="snImg" style="width:100%"> -->
+                    <center><img style="width:30%" id="shadingImg2"></center>
+                </div>
+
+                <!-- GQA Category -->
+                <h4>GQA / Visual Genome Category</h4>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject1.jpg" alt="best_cat_per_unit_GQA_subject1"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa1">
+                            <div class="centered">Subject 1</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject2.jpg" alt="best_cat_per_unit_GQA_subject2"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa2">
+                            <div class="centered">Subject 2</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject3.jpg" alt="best_cat_per_unit_GQA_subject3"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa3">
+                            <div class="centered">Subject 3</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject4.jpg" alt="best_cat_per_unit_GQA_subject4"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa4">
+                            <div class="centered">Subject 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject5.jpg" alt="best_cat_per_unit_GQA_subject5"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa5">
+                            <div class="centered">Subject 5</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject6.jpg" alt="best_cat_per_unit_GQA_subject6"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa6">
+                            <div class="centered">Subject 6</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject7.jpg" alt="best_cat_per_unit_GQA_subject7"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa7">
+                            <div class="centered">Subject 7</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_GQA_subject8.jpg" alt="best_cat_per_unit_GQA_subject8"
+                                onclick="myFunction_gqa(this);" style="width:100%" id="gqa8">
+                            <div class="centered">Subject 8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner_gqa">
+                    <img id="gqaImg" style="width:100%">
+                </div>
+                <div class="log_gqa">
+                    <p>
+                        Category: <span id="gqaX">N/A</span>
+                    </p>
+                </div>
+
+                <!-- Places365 Category -->
+                <h4>Places365 Category</h4>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject1.jpg" alt="best_cat_per_unit_subject1"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat1">
+                            <div class="centered">Subject 1</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject2.jpg" alt="best_cat_per_unit_subject2"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat2">
+                            <div class="centered">Subject 2</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject3.jpg" alt="best_cat_per_unit_subject3"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat3">
+                            <div class="centered">Subject 3</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject4.jpg" alt="best_cat_per_unit_subject4"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat4">
+                            <div class="centered">Subject 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject5.jpg" alt="best_cat_per_unit_subject5"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat5">
+                            <div class="centered">Subject 5</div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject6.jpg" alt="best_cat_per_unit_subject6"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat6">
+                            <div class="centered">Subject 6</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject7.jpg" alt="best_cat_per_unit_subject7"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat7">
+                            <div class="centered">Subject 7</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="parentContainer">
+                            <img src="images/best_cat_per_unit_subject8.jpg" alt="best_cat_per_unit_subject8"
+                                onclick="myFunction_cat(this);" style="width:100%" id="cat8">
+                            <div class="centered">Subject 8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner_cat">
+                    <img id="catImg" style="width:100%">
+                </div>
+                <div class="log_cat">
+                    <p>
+                        Category: <span id="catX">N/A</span>
+                    </p>
+                </div>
+
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <hr>
+
+                <div>
+                    <h3>High-level Visual Areas</h3>
+                    <p align="justify"> We quantified differences in the spatial measures for high-level visual
+                        regions-of-interest (see paper for ROI definitions). Medial and Ventromedial areas show larger
+                        absolute and relative depth preferences, flatter surfaces, and darker shading, while
+                        Ventrolateral and Lateral regions prefer lower average absolute depths, curvier
+                        objects, and lighter shading.</p>
+                    <br>
+                    <img src="images/Figure3_histogram_V1.png" style="width:100%">
+                    <p><b>Figure. </b><small>Histogram binning of voxels for each measure for the high level visual
+                            ROIs. Each color represents
+                            a different subject. Gray
+                            vertical dotted lines indicate the grand mean, and red vertical dotted lines indicate the
+                            95% confidence
+                            intervals.</small></p>
+                    <!-- <img src="images/Figure3_nohistogram_V2.png" style="width:100%">
+                    <p><b>Figure. </b><small>Mean ± standard deviation (N=8 subjects) for each of the high-level visual ROIs. <sup>***</sup>=significantly
+                        different from all other ROIs, <sup>**</sup>=significantly different from all but one other ROI, <sup>*</sup>=significantly
+                        different from all but two other ROIs (p<0.01; <em>post hoc</em> Tukey test; N=8 subjects).</small></p> -->
+                </div>
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <hr>
+                <div>
+                    <h3>Scene Selective Areas</h3>
+                    <p align="justify"> We quanitfied differences in the spatial measures for the “scene network”, the
+                        occipital place area (OPA), parahippocampal place
+                        area (PPA), and the retrosplenial complex (RSC). RSC appears to have a unique role
+                        in processing far spatial information and outdoor scenes, showing a preference for greater
+                        metric
+                        and relative depths, and right/left surface normals indicative of vertical structures and a
+                        possibly
+                        bodycentric representation of space. In contrast, PPA and OPA show a stronger preference for
+                        “up”
+                        surface normals, underscoring their contributions to a possibly allocentric representation of
+                        space.</p>
+                    <br>
+                    <img src="images/Figure4a_histogram_V1.png" style="width:100%">
+                    <p><b>Figure. </b><small>Histogram binning of voxels for each measure for the scene ROIs. Each color
+                            represents a different subject. Gray
+                            vertical dotted lines indicate the grand mean, and red vertical dotted lines indicate the
+                            95% confidence intervals.</small></p>
+                    <!-- <img src="images/Figure4a_nohistograms_V2_barplotsonly.jpg" style="width:100%">
+                    <p><b>Figure. </b><small>Mean ± standard deviation (N=8 subjects) for each of the scene ROIs.
+                            <sup>***</sup>=significantly
+                            different from all other ROIs, <sup>**</sup>=significantly different from all but one other ROI,
+                            <sup>*</sup>=significantly
+                            different from all but two other ROIs (p<0.01; <em>post hoc</em> Tukey test; N=8 subjects).</small></p> -->
+                </div>
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <hr>
+                <div>
+                    <h3>Object Relationships, Attributes, and Categories</h3>
+                    <p align="justify"> We examined the most selective categories for each ROI in the <a
+                            href="https://cs.stanford.edu/people/dorarad/gqa/about.html" target="_blank">GQA dataset</a>
+                        using brain dissection. We find distinct preferences for object relationships, attributes,
+                        and categories in high-level visual ROIs, with Parietal areas favoring inanimate objects and
+                        spatial relations, Lateral areas
+                        preferring person and animate objects, and Ventral areas favoring both persons and objects,
+                        aligning
+                        with previous literature.</p>
+
+                    <p align="justify">Scene ROIs also show distinctions. OPA shows greater selectivity for indoor scene
+                        elements,
+                        such as chairs, tables, and floors. PPA exhibits a mix of indoor and outdoor preferences,
+                        whereas RSC shows a clear preference for outdoor scene elements like trees, buildings, and the
+                        sky, once
+                        again reinforcing a dichotomy between local space interactions and navigation. Furthermore, when
+                        considering attributes, RSC again demonstrates more selectivity for “outdoor” attributes
+                        compared
+                        to PPA and OPA, which show higher selectivity for indoor elements. These findings underscore the
+                        distinct functional implications of these ROI selectivity profiles for processing visual scenes.
+                    </p>
+                    <img src="images/wordclouds_gqa.jpg" style="width:100%">
+                    <p><b>Figure. </b><small>WordCloud for top 20 categories that an ROI selects for in the GQA dataset.
+                            In this visualization, the category size
+                            represents the magnitude of the median IOU.</small></p>
+                </div>
+                <br>
+                <h4>See our paper for more!</h4>
+
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <hr>
+
+
+                <section id="citation">
+                    <h2>Citation</h2>
+                    <div class="cit_cont">
+                        <pre style="background-color:#F5F5F5;"><code><font size="-1">@inproceedings{sarch2023braindissect,
+            title = "Brain Dissection: fMRI-trained Networks Reveal Spatial Selectivity in the Processing of Natural Images",
+            author = "Sarch, Gabriel H. and Tarr, Michael J. and Fragkiadaki, Katerina and Wehbe, Leila", 
+            booktitle = "bioRxiv",
+            year = "2023"}</font></code></pre>
+                    </div>
+                </section>
+                <hr>
+                <br>
+                <br>
+
+                <!-- end paper container -->
+
+            </div><!-- End Grid -->
+        </div><!-- End Page Container -->
+
+</body>
+
+</html>
