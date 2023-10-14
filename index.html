@@ -12,7 +12,7 @@
         gtag('config', 'G-Q75H4YSQ8M');
     </script>
     <!-- Adapted from Dave Epstein's BlogGAN webpage template: https://dave.ml/blobgan/ -->
-    <title>Brain Dissection: fMRI-trained Networks Reveal Spatial Selectivity in the Processing of Natural Images
+    <title>HELPER: Instructable and Personalizable Embodied Agents with Memory-Augmented Context-Dependent LLM Prompting
     </title>
     <!-- <link rel="icon" type="image/x-icon" href="/images/logo_ai.png"> -->
     <meta charset="UTF-8">
@@ -47,7 +47,7 @@
     </style>
     <meta charset="UTF-8">
     <meta name="description"
-        content="Brain Dissection: fMRI-trained Networks Reveal Spatial Selectivity in the Processing of Natural Images">
+        content="HELPER: Instructable and Personalizable Embodied Agents with Memory-Augmented Context-Dependent LLM Prompting">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
@@ -559,36 +559,35 @@
             <!-- paper container -->
             <div class="w3-display-container w3-row w3-white w3-margin-bottom">
                 <div class="w3-center">
-                    <h2>Brain Dissection: fMRI-trained Networks Reveal Spatial Selectivity in the Processing of Natural
-                        Images</h2>
-                    <h5><a href="https://www.gabesarch.me">Gabriel Sarch</a> &emsp;&emsp; <a
+                    <h2>HELPER: Instructable and Personalizable Embodied Agents with
+                    Memory-Augmented Context-Dependent LLM Prompting</h2>
+                    <h5><a href="https://www.gabesarch.me">Gabriel Sarch</a> &emsp;&emsp; 
+                        &emsp;&emsp;
+                        <a href="https://www.yuewu.ml/">Yue Wu/a>
+                        <a
                             href="https://sites.google.com/andrew.cmu.edu/tarrlab/people/michael-j-tarr">Michael
                             Tarr</a> &emsp;&emsp;
-                        <a href="https://www.cs.cmu.edu/~katef/">Katerina Fragkiadaki<sup>*</sup></a> &emsp;&emsp;
-                        <a href="https://www.cs.cmu.edu/~lwehbe/">Leila Wehbe<sup>*</sup></a>
+                        <a href="https://www.cs.cmu.edu/~katef/">Katerina Fragkiadaki</a> 
                     </h5>
                     <div class="w3-center">
                         <h5>Carnegie Mellon University</h5>
-                    </div>
-                    <div class="w3-center">
-                        <sup>*</sup>Equal Advising
                     </div>
                 </div>
 
                 <br>
 
                 <div class="project-links">
-                    <a href="https://biorxiv.org/cgi/content/short/2023.05.29.542635" target="_blank" class="btn-paper"
+                    <a href="" target="_blank" class="btn-paper"
                         role="button">
                         <img src="images/paper.png" class="vertical-center-paper"> Paper
                     </a>
-                    <a href="https://github.com/Gabesarch/brain-dissection" target="_blank" class="btn-code"
+                    <a href="https://github.com/Gabesarch/HELPER" target="_blank" class="btn-code"
                         role="button">
                         <img src="images/code.png" class="vertical-center-code"> Code
                     </a>
-                    <a href="#results" class="btn-interact" role="button">
+                    <!-- <a href="#results" class="btn-interact" role="button">
                         <img src="images/brain-clipart-lg.png" class="vertical-center-interact"> Interactive
-                    </a>
+                    </a> -->
                     <a href="#citation" class="btn-citation" role="button">
                         <img src="images/googlescholar.png" class="vertical-center-cit"> Citation
                     </a>
@@ -637,40 +636,57 @@
                 <div class="w3-center">
                     <h2>Abstract</h2>
                 </div>
-                <p align="justify">The alignment between deep neural network (DNN) features and cortical responses
-                    currently provides the most accurate
-                    quantitative explanation for higher visual areas. At
-                    the same time, these model features have been critiqued as uninterpretable explanations, trading one
-                    black box (the
-                    human brain) for another (a neural network). In this paper, we train networks to directly predict,
-                    from scratch, brain
-                    responses to images from a large-scale dataset of natural scenes. We then employ "network
-                    dissection" <a href="https://arxiv.org/abs/1704.05796" target="_blank">(Bau et al., 2017)</a>,
-                    a method used for enhancing neural network interpretability by identifying and localizing the
-                    most significant features in images for individual units of a trained network, and which has been
-                    used to study category
-                    selectivity in the human brain <a href="https://www.biorxiv.org/content/10.1101/2022.03.16.484578"
-                        target="_blank">(Khosla & Wehbe, 2022)</a>. We adapt this approach to create a
-                    hypothesis-neutral model that is
-                    then used to explore the tuning properties of specific visual regions beyond category selectivity,
-                    which we call "brain
-                    dissection".</p>
+                <p align="justify">
+                    We introduce HELPER, an open-ended, em-
+                    bodied home assistant that grounds free-form
+                    human-robot instructions, user feedback, per-
+                    sonalized plans, object search queries, and er-
+                    ror feedback to executable programs by query-
+                    ing foundational language and vision mod-
+                    els. At its core, HELPER maintains an ever-
+                    expanding key-value memory of language and
+                    corresponding program pairs, and retrieves
+                    relevant examples from memory on-the-fly
+                    for context-dependent prompting of a pre-
+                    trained Large Language Model (LLM) to gen-
+                    erate programs. When execution problems
+                    arise, HELPER queries a pretrained Vision-
+                    Language Model (VLM) to obtain a visually-
+                    grounded failure reason, and obtains simi-
+                    lar error correction examples to prompt the
+                    memory-augmented LLM for a corrective pro-
+                    gram. When an object-of-interest has not been
+                    detected by the agent, HELPER searches for
+                    the object based on commonsense location
+                    proposals by the LLM. HELPER executes the
+                    programs and keeps track of object states us-
+                    ing off-the-shelf perceptual modules and low-
+                    level manipulation skills. HELPER expands
+                    its language-program memory during user de-
+                    ployment to adapt its behaviour to a user’s
+                    preferences. 
+                </p>
                 <br>
                 <!-- <spacer type="horizontal" width="1" height="1"> </spacer> -->
                 <!-- <br> -->
-                <p align="justify">We use brain dissection to examine a range of ecologically important, intermediate
-                    properties, including
-                    depth, surface normals, curvature, and object relations and find consistent feature selectivity
-                    differences across
-                    sub-regions of the parietal, lateral, and ventral visual streams. For example, in the three
-                    scene-selective network we
-                    find that RSC prefers far depths and in-plane horizontal surface normals, while OPA and PPA prefer
-                    near and mid depths
-                    and vertical surface normals, indicating a change in the spatial coordinate system used for scene
-                    representations across
-                    RSC and OPA/PPA. Such findings contribute to a deeper, more fine-grained understanding of the
-                    functional characteristics
-                    of human visual cortex when viewing natural scenes.</p>
+                <p align="justify">
+                    We show HELPER can recall recently
+                    demonstrated routines, as well as adapt them
+                    to complex variations of the routines. HELPER
+                    sets a new state-of-the-art in the TEACh Execu-
+                    tion from Dialog History (EDH) and Trajectory
+                    from Dialogue (TfD) benchmarks, improving
+                    task success by 1.7x and goal-condition suc-
+                    cess by 2.1x over existing works with minimal
+                    in-domain finetuning. HELPER can also ask
+                    for and incorporate user feedback, achieving
+                    an additional 1.3x task success improvement
+                    when doing so. HELPER demonstrates the po-
+                    tential of memory-augmented LLM and VLM
+                    prompting for semantic parsing of open-ended
+                    free-form instructions and dialogues into an ex-
+                    pandable library of programs.
+                </p>
                 <hr>
 
                 <!-- </script> -->
