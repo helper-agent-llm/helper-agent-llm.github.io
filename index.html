@@ -625,23 +625,26 @@
                         See <a href="#anchor-name">Results</a> below for interactive brains!
                     </p>
                 </div> -->
+                
                 <div class="w3-center">
-                <video width="100%" controls loop autoplay>
+                <video width="100%" controls playsinline autoplay muted loop>
                     <source src="images/Teaser_video_selfplay_highdef.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 </div>
+                <!-- <hr> -->
+                
 
 
 
                 <!-- <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
                     <img src="images/Example_each_room_fast.gif" style="width:100%">
                 </div> -->
-                <hr>
-                <div class="w3-center">
+                
+                <!-- <div class="w3-center">
                     <h2>Abstract</h2>
-                </div>
-                <p align="justify">
+                </div> -->
+                <!-- <p align="justify">
                     We introduce HELPER, an open-ended, em
                     bodied home assistant that grounds free-form
                     human-robot instructions, user feedback, per
@@ -670,11 +673,11 @@
                     its language-program memory during user de
                     ployment to adapt its behaviour to a user’s
                     preferences. 
-                </p>
-                <br>
+                </p> -->
+                <!-- <br> -->
                 <!-- <spacer type="horizontal" width="1" height="1"> </spacer> -->
                 <!-- <br> -->
-                <p align="justify">
+                <!-- <p align="justify">
                     We show HELPER can recall recently
                     demonstrated routines, as well as adapt them
                     to complex variations of the routines. HELPER
@@ -691,8 +694,8 @@
                     prompting for semantic parsing of open-ended
                     free-form instructions and dialogues into an ex
                     pandable library of programs.
-                </p>
-                <hr>
+                </p> -->
+                <!-- <hr> -->
 
                 <!-- </script> -->
                 <!-- <div class="outer"> -->
@@ -705,17 +708,26 @@
                     </p>
                 </div> -->
 
-                </section>
+                <!-- </section> -->
 
-
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <hr>
                 <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
                     <h2>How does HELPER work?</h2>
+                    <!-- <p align="justify">
+                        HELPER is an open-ended, embodied home assistant that grounds free-form human-robot instructions, user
+                        feedback, personalized plans, object search queries, and error feedback to executable programs by querying
+                        foundational language and vision models.
+                    </p> -->
+                    <br>
                     <!-- <p align="justify">
                         Inspired by <a href="https://www.biorxiv.org/content/10.1101/2022.03.16.484578v2"
                             target="_blank">Khosla & Wehbe 2022</a>, brain dissection provides a hypothesis-neutral
                         approach for identifying the most significant image features for
                         predicting the response of a specific voxel. </p> -->
-                    <br>
+                    <!-- <br> -->
                     <!-- <hr style="height:1px; visibility:hidden;" > -->
                     <!-- <p align="justify">The method trains a convolutional neural network tailored to predict voxel
                         responses to natural images within a defined sub-region. By training a backbone network for this
@@ -726,7 +738,7 @@
                             target="_blank">Natural Scenes Dataset (NSD)</a>, which consists of high-resolution
                         fMRI responses to naturalistic images from <a href="https://cocodataset.org/#home"
                             target="_blank">Microsoft COCO</a>.</p> -->
-                    <br>
+                    <!-- <br> -->
                     <!-- <hr style="height:3px; visibility:hidden;" /> -->
                     <!-- <p align="justify">After training, we "dissect" the network by inputting held-out images and
                         extracting regions that
@@ -734,9 +746,94 @@
                         analyze properties of the
                         voxel-selective regions within the images.
                     </p> -->
-
+                    <h3 align="justify">Framework Overview</h3>
+                    <p align="justify">Helper is an embodied agent designed to convert natural language instructions and RGB sensor data into a sequence of
+                    robot actions using a modular organization. Helper is made up of the following modules:</p>
+                    <img src="images/Full_Pipeline_Figure_V1.jpg" style="width:100%">
+                    <p align="justify">
+                    <ol>
+                    <li align="justify"><b>PLANNER</b>: The PLANNER obtains the most relevant task plans from a memory bank to prompt
+                    for an LLM to transform user instructions, dialogue, failure reasons, or user feedback into an executable program.</li>
+                    <li align="justify"><b>RECTIFIER</b>: The RECTIFIER predicts the reason for an action failure from
+                    pixel input using a pretrained vision-language model and suggests a corrective program to fix the problem.</li>
+                    <li align="justify"><b>EXECUTOR</b>: translates each program step into specific navigation and manipulation actions. The EXECUTOR has the following sub-components:
+                        <ol type="a">
+                        <li align="justify"><b>Perception & action execution</b>: The Executor builds a semantic map from segmentation and depth maps estimated from RGB using an off-the-shelf detector and monocular depth estimation network, and detects and keeps track of object states (cooked, dirty, ...) via a vision-language model. It also assumes a set of low-level manipulation
+                        primitives to call on.</li>
+                        <li align="justify"><b>INSPECTOR</b>: This module verifies if the necessary preconditions for an action, and the plan is adjusted according to the current environmental and agent state.</li>
+                        <li align="justify"><b>LOCATOR</b>: The LOCATOR module efficiently searches for a required object by utilizing previous user instructions and LLMs' commonsense knowledge.</li>
+                        </ol>
+                    </li>
+                    </ol>
+                    </p>
                     <br>
-                    <!-- <img src="images/Figure1_full_V7.png" style="width:100%"> -->
+
+                    <h3 align="justify">Memory-Augmented Prompting</h3>
+                    <p align="justify">A key component of HELPER is its <b>memory of language-program pairs</b> to generate <b>tailored prompts
+                        for pretrained LLMs based on the current
+                        language context</b>. This aids in parsing
+                        diverse, and user-specific linguistic inputs for
+                        planning, re-planning during failures, and
+                        interpreting human feedback.</p>
+                    <img src="images/PlannerCombinedFigure_V5_katefversion2.jpg" style="width:100%">
+                    <br>
+                    <br>
+                    <br>
+                    <h3 align="justify">Visually-Grounded Error Correction</h3>
+                    <p align="justify">HELPER uses a <b>pretrained VLM to
+                    obtain an action failure reason</b> and uses it to
+                    retrieve similar failure cases with solutions for
+                    memory-augmented LLM failure correction.</p>
+                    <img src="images/Rectifier_Figure_V1.jpg" style="width:100%">
+                    
+                    <br>
+                    <spacer type="horizontal" width="100" height="50"> </spacer>
+                    <br>
+                    <hr>
+                    <h2>Household Task Execution from Messy Dialogue</h2>
+                    <p align="justify">We set a new <b>state-of-the-art in the TEACh benchmark</b>, where the agent is given a messy dialogue segment at the
+                    start of the episode and an RGB sensor and is tasked to
+                    infer the sequence of actions to execute based on
+                    the user’s intents in the dialogue segment, ranging
+                    from MAKE COFFEE to PREPARE BREAKFAST.</p>
+                    <h3 align="justify">Make a salad demo with module visualizations</h3>
+                    <div class="w3-center">
+                        <video width="100%" controls playsinline muted>
+                            <source src="images/Full Task video with task text.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <h3 align="justify">Error correction demo with module visualizations</h3>
+                    <div class="w3-center">
+                        <video width="100%" controls playsinline muted>
+                            <source src="images/Failure_video_HELPER2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <br>
+                    <spacer type="horizontal" width="100" height="50"> </spacer>
+                    <br>
+                    <hr>
+                    <h2>User Personalization</h2>
+                    <p align="justify">HELPER expands its
+                    memory of programs with successful executions of user specific procedures; it then
+                    recalls them and adapt them in future in-
+                    teractions with the user, allowing for user-personalized references.</p>
+                    <img src="images/user_personal_feedback_V2.jpg" style="width:100%">
+                    <br>
+                    <br>
+                    <br>
+                    <h2>User Feedback</h2>
+                    <p align="justify">Gathering user feedback can improve a home
+                    robot’s performance, but frequently requesting
+                    feedback on a task can diminish the overall user experience. Thus, we enable HELPER to elicit sparse
+                    user feedback only when it has completed execution of the program from the initial user input.</p>
+                    <img src="images/User_Feedback.jpg" style="width:100%">
+
+
+
+                    
+                    <br>
                     <!-- <p> </p> -->
 
                     <!-- <p align="justify"><b>A. fMRI Response-Optimized Training Procedure.</b> All voxels in an ROI share a convolutional backbone. Each voxel is assigned a set of learnable spatial and feature weights. The voxel weights are applied to the output features of the backbone network to predict the voxel response for an input image. Training minimizes the mean squared error between the predicted and actual voxel response of NSD images.</p>
@@ -745,16 +842,16 @@
                 <br>
                 <spacer type="horizontal" width="100" height="50"> </spacer>
                 <br>
-                <hr>
+                <!-- <hr> -->
                 
-                <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
+                <!-- <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
                     <h2 id="results">Visualizations of </h2>
-                </div>
+                </div> -->
 
 
-                <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
+                <!-- <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
                     <h2 id="results">Results</h2>
-                </div>
+                </div> -->
 
                 
 
