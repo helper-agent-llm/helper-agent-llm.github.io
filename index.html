@@ -546,6 +546,15 @@
             text-align: center;
             color: white;
         }
+
+        .container {
+        display: flex;
+        }
+
+        .column-left,
+        .column-right {
+        width: 50%;
+        }
     </style>
 </head>
 
@@ -795,20 +804,64 @@
                     start of the episode and an RGB sensor and is tasked to
                     infer the sequence of actions to execute based on
                     the user’s intents in the dialogue segment, ranging
-                    from MAKE COFFEE to PREPARE BREAKFAST.</p>
+                    from MAKE COFFEE to PREPARE BREAKFAST. <b>HELPER improves
+                    task success by 1.7x and goal-condition success by 2.1x over existing works with minimal
+                    in-domain finetuning.</b></p>
+                    <br>
                     <h3 align="justify">Make a salad demo with module visualizations</h3>
                     <div class="w3-center">
-                        <video width="100%" controls playsinline muted>
+                        <video width="90%" controls playsinline muted>
                             <source src="images/Full Task video with task text.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
+                    <br>
+                    <br>
                     <h3 align="justify">Error correction demo with module visualizations</h3>
                     <div class="w3-center">
-                        <video width="100%" controls playsinline muted>
+                        <video width="90%" controls playsinline muted>
                             <source src="images/Failure_video_HELPER2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                    </div>
+                    <br>
+                    <br>
+                    <h3 align="justify">Task Videos</h3>
+                    <div class="container">
+                        <div class="column-left">Water plant</div>
+                        <div class="column-right">Prepare coffee in a clean mug</div>
+                    </div>
+                    <!-- <div class="w3-center">
+                        <video width="90%" controls playsinline muted>
+                            <source src="images/task_videos/outputc66573f82df8618c_aad3.tfd_c66573f82df8618c_aad3_Full.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div> -->
+                    <div id="wrapper">
+                        <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                            <source type="video/mp4" src="images/task_videos/612f99763b6978b6_0c1a.tfd_612f99763b6978b6_0c1a_52_fcd65c4a22cb59a8e4ad.mp4" />
+                        </video>
+                        <!-- <p>Content above your video</p> -->
+                        <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                            <source type="video/mp4" src="images/task_videos/7688a09fa6b789ca_6db5.tfd_7688a09fa6b789ca_6db5_61_db7943b97465ca20954f.mp4" />
+                        </video>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="column-left">Put all credit cards on the bed</div>
+                        <div class="column-right">Make a salad</div>
+                    </div>
+                    <div id="wrapper">
+                        <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                            <source type="video/mp4"
+                                src="images/task_videos/8463e3c141964336_c9cc.tfd_8463e3c141964336_c9cc_69_7a9e16fc939574b527cb.mp4" />
+                        </video>
+                        <!-- <p>Content above your video</p> -->
+                        <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                            <source type="video/mp4"
+                                src="" />
+                        </video>
+                        <div class="clear"></div>
                     </div>
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
@@ -817,22 +870,46 @@
                     <h2>User Personalization</h2>
                     <p align="justify">HELPER expands its
                     memory of programs with successful executions of user specific procedures; it then
-                    recalls them and adapt them in future in-
-                    teractions with the user, allowing for user-personalized references.</p>
+                    recalls them and adapt them in future interactions with the user, allowing for user-personalized references.</p>
                     <img src="images/user_personal_feedback_V2.jpg" style="width:100%">
+                    <p align="justify">We test HELPER on its ability retrieve a personalized routines and adapt them to accomodate zero,
+                        one, two, or three changes (10 each) from the original plan. <b>Of the 40 inputs tested, HELPER successfully
+                            recalled and adapted all but three personalized routines.</b></p>
+                    <p align="justify">An example sample from the evaluation is shown below of the original instruction used to generate the personalized program and add it to memory, evaluation instructions for zero, one, two, and three requested changes of
+                        the routine.</p>
+                    <p align="justify"><b>Original Instruction:</b> <font color="#9900FF">"Make me a salad. The name of this salad is called the David salad. The
+                    salad has two slices of tomato and three slices of lettuce on a clean plate."</font></p>
+                    
+                    <p align="justify"><b>No Change Instruction:</b> <font color="#9900FF">"Make me the David salad"</font></p>
+                    
+                    <p align="justify"><b>One Change Instruction:</b> <font color="#9900FF">"Make me the David salad with a slice of potato"</font></p>
+                    
+                    <p align="justify"><b>Two Change Instruction:</b> <font color="#9900FF">"Make me the David salad but add a slice of potato and add one slice of lettuce"</font></p>
+                    
+                    <p align="justify"><b>Three Change Instruction:</b> <font color="#9900FF">"Make me the David salad and add a slice of potato, add one slice of lettuce, and bring a fork with it"</font></p>
                     <br>
+                    <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
-                    <br>
+                    <hr>
                     <h2>User Feedback</h2>
                     <p align="justify">Gathering user feedback can improve a home
                     robot’s performance, but frequently requesting
                     feedback on a task can diminish the overall user experience. Thus, we enable HELPER to elicit sparse
-                    user feedback only when it has completed execution of the program from the initial user input.</p>
+                    user feedback only when it has completed execution of the program from the initial user input. <b>HELPER improves an additional 1.3X in task success when incorporating just two user feedbacks.</b></p>
                     <img src="images/User_Feedback.jpg" style="width:100%">
-
-
-
-                    
+                    <br>
+                    <br>
+                    <p align="justify"><b>VIDEO:</b> Clean all cookware with user feedback (skip to 0:41 for user feedback saying HELPER missed cleaning the pot)</p>
+                    <video id="home2" width="50%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4" src="images/task_videos/4f4013ceab294a80_3864.tfd_4f4013ceab294a80_3864_145_e31f2cd6a8b6545446fa.mp4" />
+                    </video>
+                    <br>
+                    <br>
+                    <p align="justify"><b>VIDEO:</b> Make breakfast with user feedback (skip to 2:54 for user feedback saying did not put tomato & lettuce slice on plate)</p>
+                    <video id="home2" width="50%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/c66573f82df8618c_aad3.tfd_c66573f82df8618c_aad3_80_b5980228dfd5fc4d1ce9.mp4" />
+                    </video>
                     <br>
                     <!-- <p> </p> -->
 
@@ -851,17 +928,13 @@
 
                 <!-- <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
                     <h2 id="results">Results</h2>
-                </div> -->
-
-                
-
-                <br>
-                <h4>See our paper for more!</h4>
+                </div> -->                
 
                 <br>
                 <spacer type="horizontal" width="100" height="50"> </spacer>
                 <br>
                 <hr>
+                <h4>See our paper for more!</h4>
 
 
                 <section id="citation">
