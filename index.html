@@ -3,6 +3,8 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
+
+    <!-- Taken from view-source:https://voyager.minedojo.org/ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q75H4YSQ8M"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -910,22 +912,27 @@
                     <br>
                     <hr>
                     <h1>Results</h1>
-                    <div class="w3-center">
+                    <!-- <div class="w3-center">
                         <video width="100%" controls playsinline autoplay muted loop>
                             <source src="images/Teaser_video_selfplay_highdef.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                    </div>
+                    </div> -->
                     <h2>Household Task Execution from Messy Dialogue</h2>
                     <p align="justify">We set a new <b>state-of-the-art in the TEACh benchmark</b>, where the agent is given a messy dialogue segment at the
                     start of the episode and an RGB sensor and is tasked to
                     infer the sequence of actions to execute based on
                     the user’s intents in the dialogue segment, ranging
                     from MAKE COFFEE to PREPARE BREAKFAST. <b>HELPER improves
-                    task success by 1.7x and goal-condition success by 2.1x over existing works with minimal
+                    Trajectory from Dialogue (TfD) task success by 1.7x and goal-condition success by 2.1x over existing works with minimal
                     in-domain finetuning.</b></p>
+                    <img src="images/TfD_Table.jpg" style="width:70%">
                     <br>
-                    <h3 align="justify">Make a salad demo with module visualizations</h3>
+                    <br>
+                    <spacer type="horizontal" width="100" height="50"> </spacer>
+                    <br>
+                    <h3>Demos</h3>
+                    <h4 align="center">Make a salad demo with module visualizations</h4>
                     <div class="w3-center">
                         <video width="90%" controls playsinline muted>
                             <source src="images/Full Task video with task text.mp4" type="video/mp4">
@@ -934,7 +941,7 @@
                     </div>
                     <br>
                     <br>
-                    <h3 align="justify">Error correction demo with module visualizations</h3>
+                    <h4 align="center">Error correction demo with module visualizations</h4>
                     <div class="w3-center">
                         <video width="90%" controls playsinline muted>
                             <source src="images/Failure_video_HELPER2.mp4" type="video/mp4">
@@ -948,6 +955,38 @@
                     <!-- <h3 align="justify">TODO: ADD MORE VIDEOS & TASKS HERE</h3> -->
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
+                    <br>
+                    <!-- <hr> -->
+                    <h2>User Feedback</h2>
+                    <p align="justify">Gathering user feedback can improve a home
+                        robot’s performance, but frequently requesting
+                        feedback on a task can diminish the overall user experience. Thus, we enable HELPER to elicit sparse
+                        user feedback only when it has completed execution of the program from the initial user input. <b>HELPER improves an
+                            additional 1.3X in task success when incorporating just two user feedbacks.</b></p>
+                    <img src="images/User_Feedback.jpg" style="width:70%">
+                    <br>
+                    <br>
+                    <p align="justify"><b>VIDEO:</b> Clean all cookware with user feedback<br>(skip to 0:41 for user feedback saying HELPER
+                        missed cleaning the pot)</p>
+                    <!-- <video id="home2" width="50%" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/4f4013ceab294a80_3864.tfd_4f4013ceab294a80_3864_145_e31f2cd6a8b6545446fa.mp4" />
+                    </video> -->
+                    <video controls muted width="50%">
+                        <source src="images/task_videos/4f4013ceab294a80_3864.tfd_4f4013ceab294a80_3864_145_e31f2cd6a8b6545446fa.mp4" type="video/mp4" />
+                    </video>
+                    <br>
+                    <br>
+                    <p align="justify"><b>VIDEO:</b> Make breakfast with user feedback<br>(skip to 2:54 for user feedback saying did not put
+                        tomato & lettuce slice on plate)</p>
+                    <!-- <video id="home2" width="50%" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/c66573f82df8618c_aad3.tfd_c66573f82df8618c_aad3_80_b5980228dfd5fc4d1ce9.mp4" />
+                    </video> -->
+                    <video controls muted width="50%">
+                        <source src="images/task_videos/c66573f82df8618c_aad3.tfd_c66573f82df8618c_aad3_80_b5980228dfd5fc4d1ce9.mp4"
+                            type="video/mp4" />
+                    </video>
                     <br>
                     <hr>
                     <h2>User Personalization</h2>
@@ -974,26 +1013,7 @@
                     <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
                     <hr>
-                    <h2>User Feedback</h2>
-                    <p align="justify">Gathering user feedback can improve a home
-                    robot’s performance, but frequently requesting
-                    feedback on a task can diminish the overall user experience. Thus, we enable HELPER to elicit sparse
-                    user feedback only when it has completed execution of the program from the initial user input. <b>HELPER improves an additional 1.3X in task success when incorporating just two user feedbacks.</b></p>
-                    <img src="images/User_Feedback.jpg" style="width:70%">
-                    <br>
-                    <br>
-                    <p align="justify"><b>VIDEO:</b> Clean all cookware with user feedback (skip to 0:41 for user feedback saying HELPER missed cleaning the pot)</p>
-                    <video id="home2" width="50%" poster="images/video.jpg" controls="controls" preload="none">
-                        <source type="video/mp4" src="images/task_videos/4f4013ceab294a80_3864.tfd_4f4013ceab294a80_3864_145_e31f2cd6a8b6545446fa.mp4" />
-                    </video>
-                    <br>
-                    <br>
-                    <p align="justify"><b>VIDEO:</b> Make breakfast with user feedback (skip to 2:54 for user feedback saying did not put tomato & lettuce slice on plate)</p>
-                    <video id="home2" width="50%" poster="images/video.jpg" controls="controls" preload="none">
-                        <source type="video/mp4"
-                            src="images/task_videos/c66573f82df8618c_aad3.tfd_c66573f82df8618c_aad3_80_b5980228dfd5fc4d1ce9.mp4" />
-                    </video>
-                    <br>
+                    
                     <!-- <p> </p> -->
 
                     <!-- <p align="justify"><b>A. fMRI Response-Optimized Training Procedure.</b> All voxels in an ROI share a convolutional backbone. Each voxel is assigned a set of learnable spatial and feature weights. The voxel weights are applied to the output features of the backbone network to predict the voxel response for an input image. Training minimizes the mean squared error between the predicted and actual voxel response of NSD images.</p>
@@ -1013,10 +1033,10 @@
                     <h2 id="results">Results</h2>
                 </div> -->                
 
-                <br>
+                <!-- <br>
                 <spacer type="horizontal" width="100" height="50"> </spacer>
                 <br>
-                <hr>
+                <hr> -->
                 <h4>See our paper for more!</h4>
 
 
