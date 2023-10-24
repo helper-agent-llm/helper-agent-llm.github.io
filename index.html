@@ -495,11 +495,11 @@
 
     <style>
         /* The grid: Four equal columns that floats next to each other */
-        .column {
+        /* .column {
             float: left;
             width: 25% !important;
             padding: 10px;
-        }
+        } */
 
         /* Style the images inside the grid */
         .column img {
@@ -597,13 +597,18 @@
         }
 
         .is-one-third-desktop {
-            flex: 0 1 calc(33.333% - 4px); /* Adjusted to allow for margin */
+            flex: 0 1 calc(32.333% - 4px); /* Adjusted to allow for margin */
             margin: 2px; /* Same margin all around for consistency */
-            max-width: 33.333%;
+            max-width: 32.333%;
         }
 
         .is-centered {
             text-align: center;
+        }
+
+        video {
+            width: 100%;
+            object-fit: cover; /* or another value as needed */
         }
 
     </style>
@@ -611,7 +616,7 @@
 
 <body class="w3-white">
     <!-- Page Container -->
-    <div class="w3-content w3-margin-top w3-margin-bottom" style="max-width:960px;">
+    <div class="w3-content w3-margin-top w3-margin-bottom" style="max-width:1080px;">
 
         <!-- The Grid -->
         <div class="w3-row-padding">
