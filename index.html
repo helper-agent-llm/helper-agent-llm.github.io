@@ -17,6 +17,12 @@
     <title>Open-Ended Instructable Embodied Agents with Memory-Augmented Large Language Models
     </title>
     <link rel="stylesheet" href="./bulma.min.css" />
+    <link rel="stylesheet" href=".bulma-carousel.min.css" />
+    <link rel="stylesheet" href=".bulma-slider.min.css" />
+    <!-- <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link rel="stylesheet" href="./static/css/academicons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+    <link rel="stylesheet" href="./index.css" /> -->
     <!-- <link rel="icon" type="image/x-icon" href="/images/logo_ai.png"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -130,6 +136,26 @@
             -moz-user-select: none;
             -ms-user-select: none;
             -webkit-user-select: none;
+        }
+
+        .video-responsive {
+        text-align: center;
+        }
+
+        @media screen and (max-width: 560px) {
+        .video-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+        .video-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
         }
 
         .log {
@@ -550,16 +576,14 @@
             color: white;
         }
 
-        .container {
-        display: flex;
-        }
+        
 
         .column-left,
         .column-right {
         width: 50%;
         }
 
-        .video-column {
+        /* .video-column {
             margin-left: -10px;
             margin-right: -10px;
             margin-bottom: -15px;
@@ -568,7 +592,43 @@
 
         .video-column .column {
             padding: 0 5px;
+        } */
+
+        /* .video-column {
+            float: left;
+            padding: 5px;
+            width: 33.33%;
+            text-align: center;
+        } */
+
+        .container {
+        display: flex;
+        padding: 2px; /* Adjust as needed */
         }
+
+        .columns {
+            justify-content: center;
+        }
+
+        .video-column {
+            padding: 0; /* Remove padding */
+        }
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* this will center the videos */
+        }
+
+        .is-one-third-desktop {
+            flex: 0 1 calc(33.333% - 4px); /* Adjusted to allow for margin */
+            margin: 2px; /* Same margin all around for consistency */
+            max-width: 33.333%;
+        }
+
+        .is-centered {
+            text-align: center;
+        }
+
     </style>
 </head>
 
@@ -618,75 +678,61 @@
                 <br>
                 <spacer type="horizontal" width="5" height="5"> </spacer>
                 <br> -->
-                
-                <!-- Taken from view-source:https://voyager.minedojo.org/ -->
+
                 <section class="section">
                     <div class="container is-max-widescreen">
-                        <div class="rows">
-                            <div class="rows is-centered">
-                                <div class="row is-full-width">
-                                    <div class="columns">
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="images/task_videos_new/Example_Video2.m4v" type="video/mp4" />
-                                            </video>
-                                        </div>
-                
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="images/task_videos_new/Example_Video1_Clean.m4v" type="video/mp4" />
-                                            </video>
-                                        </div>
-                
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="images/task_videos_new/Example_Video3.m4v" type="video/mp4" />
-                                            </video>
-                                        </div>
-                                    </div>
-                                    <div class="columns">
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="images/task_videos_new/Example_Video4.m4v" type="video/mp4" />
-                                            </video>
-                                        </div>
-                
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="images/task_videos_new/Example_Video6.m4v" type="video/mp4" />
-                                            </video>
-                                        </div>
-                
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="images/task_videos_new/Example_Video5.m4v" type="video/mp4" />
-                                            </video>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="columns">
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="assets/videos/gallery/portal.mp4" type="video/mp4" />
-                                            </video>
-                                        </div>
-                
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="assets/videos/gallery/pig.mp4" type="video/mp4" />
-                                            </video>
-                                        </div>
-                
-                                        <div class="column has-text-left video-column">
-                                            <video controls muted autoplay loop width="100%">
-                                                <source src="assets/videos/gallery/fish.mp4" type="video/mp4" />
-                                            </video>
-                                        </div>
-                                    </div> -->
-                                </div>
+                        <div class="columns is-multiline is-centered">
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video2.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video4.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video8.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video1_Clean.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video6.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video9.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video7.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video3.m4v" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="column is-full-mobile is-one-third-desktop video-column">
+                                <video controls muted autoplay loop width="100%">
+                                    <source src="images/task_videos_new/Example_Video5.m4v" type="video/mp4" />
+                                </video>
                             </div>
                         </div>
                     </div>
                 </section>
+
+                
+
                 
                 
 
