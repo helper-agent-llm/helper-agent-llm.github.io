@@ -14,6 +14,7 @@
     <!-- Adapted from Dave Epstein's BlogGAN webpage template: https://dave.ml/blobgan/ -->
     <title>HELPER: Instructable and Personalizable Embodied Agents with Memory-Augmented Context-Dependent LLM Prompting
     </title>
+    <link rel="stylesheet" href="./bulma.min.css" />
     <!-- <link rel="icon" type="image/x-icon" href="/images/logo_ai.png"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -555,6 +556,17 @@
         .column-right {
         width: 50%;
         }
+
+        .video-column {
+            margin-left: -10px;
+            margin-right: -10px;
+            margin-bottom: -15px;
+            padding-bottom: 0px;
+        }
+
+        .video-column .column {
+            padding: 0 5px;
+        }
     </style>
 </head>
 
@@ -568,8 +580,8 @@
             <!-- paper container -->
             <div class="w3-display-container w3-row w3-white w3-margin-bottom">
                 <div class="w3-center">
-                    <h2>HELPER: Instructable and Personalizable Embodied Agents with
-                    Memory-Augmented Context-Dependent LLM Prompting</h2>
+                    <h2>Open-Ended Instructable Embodied Agents with
+                    Memory-Augmented Large Language Models</h2>
                     <h5><a href="https://www.gabesarch.me">Gabriel Sarch</a> &emsp;&emsp; 
                         <a href="https://www.yuewu.ml/">Yue Wu</a> &emsp;&emsp;
                         <a
@@ -596,54 +608,132 @@
                     <!-- <a href="#results" class="btn-interact" role="button">
                         <img src="images/brain-clipart-lg.png" class="vertical-center-interact"> Interactive
                     </a> -->
-                    <a href="#citation" class="btn-citation" role="button">
+                    <!-- <a href="#citation" class="btn-citation" role="button">
                         <img src="images/googlescholar.png" class="vertical-center-cit"> Citation
-                    </a>
+                    </a> -->
                 </div>
 
                 <br>
                 <spacer type="horizontal" width="5" height="5"> </spacer>
                 <br>
-                <!-- <div>
-                    <p><b>Hover over the brain and observe the depth selectivity (preferences)</b></p>
-                </div> -->
-                <!-- GIF: https://loading.io/asset/662945 -->
-                <!-- .demo_gif {
-                position: relative;
-                width: 50%;
-                text-align: center;
-                margin: auto;
-                } -->
-
-                <!-- <div>
-                    <img src="images/demo_gif.gif" style="text-align: center; width: 50%; display: block; margin-left: auto; margin-right: auto; margin-bottom:0; padding: 0">
-                </div>
-                <div class="inner_demo">
-                    <img src="images/normals_medians_subject1.jpg" id="absdepthdemoImg" style="width:100%">
-                </div>
-                <div class="log_demo">
-                    <p>
-                        Depth selectivity: <span id="depthdemoX">N/A</span> meters
-                    </p>
-                    <p>
-                        See <a href="#anchor-name">Results</a> below for more interactive brains!
-                    </p>
-                </div> -->
-                <!-- <div class="log_demo">
-                    <p>
-                        See <a href="#anchor-name">Results</a> below for interactive brains!
-                    </p>
-                </div> -->
                 
-                <div class="w3-center">
-                <video width="100%" controls playsinline autoplay muted loop>
-                    <source src="images/Teaser_video_selfplay_highdef.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                </div>
-                <!-- <hr> -->
+                <!-- Taken from view-source:https://voyager.minedojo.org/ -->
+                <section class="section">
+                    <div class="container is-max-widescreen">
+                        <div class="rows">
+                            <div class="rows is-centered">
+                                <div class="row is-full-width">
+                                    <div class="columns">
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="images/task_videos_new/Example_Video2.m4v" type="video/mp4" />
+                                            </video>
+                                        </div>
+                
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="images/task_videos_new/Example_Video1_Clean.m4v" type="video/mp4" />
+                                            </video>
+                                        </div>
+                
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="images/task_videos_new/Example_Video3.m4v" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
+                                    <div class="columns">
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="images/task_videos_new/Example_Video4.m4v" type="video/mp4" />
+                                            </video>
+                                        </div>
+                
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="images/task_videos_new/Example_Video6.m4v" type="video/mp4" />
+                                            </video>
+                                        </div>
+                
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="images/task_videos_new/Example_Video5.m4v" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="columns">
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="assets/videos/gallery/portal.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="assets/videos/gallery/pig.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                
+                                        <div class="column has-text-left video-column">
+                                            <video controls muted autoplay loop width="100%">
+                                                <source src="assets/videos/gallery/fish.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
                 
 
+                
+                <!-- <div class="container">
+                    <div class="column-left">Water plant</div>
+                    <div class="column-right">Prepare coffee in a clean mug</div>
+                </div>
+                <div id="wrapper">
+                    <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/612f99763b6978b6_0c1a.tfd_612f99763b6978b6_0c1a_52_fcd65c4a22cb59a8e4ad.mp4" />
+                    </video>
+                    <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/7688a09fa6b789ca_6db5.tfd_7688a09fa6b789ca_6db5_61_db7943b97465ca20954f.mp4" />
+                    </video>
+                    <div class="clear"></div>
+                </div>
+                <div class="container">
+                    <div class="column-left">Put all credit cards on the bed</div>
+                    <div class="column-right">Put a slice of lettuce on a clean plate</div>
+                </div>
+                <div id="wrapper">
+                    <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/8463e3c141964336_c9cc.tfd_8463e3c141964336_c9cc_69_7a9e16fc939574b527cb.mp4" />
+                    </video>
+                    <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/2f8d482d22e56fdd_3e5c.tfd_2f8d482d22e56fdd_3e5c_188_bb2f62c23329a80458cc.mp4" />
+                    </video>
+                    <div class="clear"></div>
+                </div>
+                <div class="container">
+                    <div class="column-left">Clean all plates</div>
+                    <div class="column-right">Put all sports equipment on the bed</div>
+                </div>
+                <div id="wrapper">
+                    <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/823f0fe4bda8607c_ee5e.tfd_823f0fe4bda8607c_ee5e_285_89fd71070236d5d8630b.mp4" />
+                    </video>
+                    <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
+                        <source type="video/mp4"
+                            src="images/task_videos/f892b2976d0955e0_b0d9.tfd_f892b2976d0955e0_b0d9_329_f53d766de44f3fd422ec.mp4" />
+                    </video>
+                    <div class="clear"></div>
+                </div> -->
 
 
                 <!-- <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
@@ -724,7 +814,22 @@
                 <br>
                 <hr>
                 <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
+                    <!-- <h2>What can HELPER do?</h2> -->
                     <h2>How does HELPER work?</h2>
+                    <p align="justify">We enhance Large Language Models (LLMs) with an external memory storing language-program pairs for in-context example
+                    retrieval during task plan generation. The model processes instructions, dialogues, corrections, and visual environment
+                    descriptions, retrieving pertinent memories for context-aware predictions of task plans and their adjustments. Our agent
+                    implements these plans through visual input, utilizing map building, 3D object detection, state tracking, and active
+                    exploration guided by the LLM's common sense for object location. Successful programs, paired with their linguistic
+                    context, are archived in memory, facilitating personalized future interactions.</p>
+                    <div class="w3-center">
+                        <video width="100%" playsinline autoplay muted loop>
+                            <source src="images/Figure1_Video_Cropped.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    
                     <!-- <p align="justify">
                         HELPER is an open-ended, embodied home assistant that grounds free-form human-robot instructions, user
                         feedback, personalized plans, object search queries, and error feedback to executable programs by querying
@@ -756,20 +861,25 @@
                         voxel-selective regions within the images.
                     </p> -->
                     <h3 align="justify">Framework Overview</h3>
-                    <p align="justify">Helper is an embodied agent designed to convert natural language instructions and RGB sensor data into a sequence of
-                    robot actions using a modular organization. Helper is made up of the following modules:</p>
-                    <img src="images/Full_Pipeline_Figure_V1.jpg" style="width:100%">
+                    <p align="justify">Helper is an an embodied agent
+                    equipped with as external memory of language-program pairs that parses free-form human-robot dialogue into action programs through
+                    retrieval-augmented LLM prompting. The programs are then translated into specific
+                    navigation and manipulation actions from RGB input.</p>
+                    <p align="justify">Helper is made up of the following modules:</p>
+                    <img src="images/Full_Pipeline_Figure_V4.jpg" style="width:60%">
                     <p align="justify">
                     <ol>
-                    <li align="justify"><b>PLANNER</b>: The PLANNER obtains the most relevant task plans from a memory bank to prompt
+                    <li align="justify"><b>PLANNER</b>: The PLANNER obtains the most relevant task plans from memory to prompt
                     an LLM to transform user instructions, dialogue, failure reasons, or user feedback into an executable program.</li>
-                    <li align="justify"><b>RECTIFIER</b>: The RECTIFIER predicts the reason for an action failure from
-                    pixel input using a pretrained vision-language model and suggests a corrective program to fix the problem.</li>
+                    <li align="justify"><b>Plan correction</b>: When an action fails, a pretrained vision-language model infers the failure's cause from pixel input. This
+                    inferred reason, along with the top-K most relevant error correction examples from memory, is then fed into the planner
+                    to generate a corrective program.</li>
                     <li align="justify"><b>EXECUTOR</b>: translates each program step into specific navigation and manipulation actions. The EXECUTOR has the following sub-components:
                         <ol type="a">
-                        <li align="justify"><b>Perception & action execution</b>: The Executor builds a semantic map from segmentation and depth maps estimated from RGB using an off-the-shelf detector and monocular depth estimation network, and detects and keeps track of object states (cooked, dirty, ...) via a vision-language model. It also assumes a set of low-level manipulation
-                        primitives to call on.</li>
-                        <li align="justify"><b>INSPECTOR</b>: This module verifies if the necessary preconditions for an action, and the plan is adjusted according to the current environmental and agent state.</li>
+                        <li align="justify"><b>Perception</b>: The Executor builds a semantic map using an off-the-shelf object detector and monocular depth estimation network. It detects and keeps track of object states (cooked, dirty, ...) via a vision-language model.</li>
+                        <li align="justify"><b>Action execution</b>: It executes navigation code steps by shortest path planning in the semantic obstacle map and executes manipulation code steps
+                        by calling on a set of low-level manipulation actions (pickup(X), slice(X), etc.).</li>
+                        <li align="justify"><b>Pre-condition check</b>: Verifies if the necessary preconditions for an action, and the plan is adjusted according to the current environmental and agent state.</li>
                         <li align="justify"><b>LOCATOR</b>: The LOCATOR module efficiently searches for a required object by utilizing previous user instructions and LLMs' commonsense knowledge.</li>
                         </ol>
                     </li>
@@ -784,7 +894,7 @@
                         diverse, and user-specific linguistic inputs for
                         planning, re-planning during failures, and
                         interpreting human feedback.</p>
-                    <img src="images/PlannerCombinedFigure_V5_katefversion2.jpg" style="width:100%">
+                    <img src="images/PlannerCombinedFigure_V5_katefversion2_combinedwfeedbackpersonal_V3.jpg" style="width:100%">
                     <br>
                     <br>
                     <br>
@@ -793,12 +903,19 @@
                     obtain an action failure reason</b> and uses it to
                     retrieve similar failure cases with solutions for
                     memory-augmented LLM failure correction.</p>
-                    <img src="images/Rectifier_Figure_V1.jpg" style="width:100%">
+                    <img src="images/Rectifier_Figure_V1.jpg" style="width:70%">
                     
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
                     <hr>
+                    <h1>Results</h1>
+                    <div class="w3-center">
+                        <video width="100%" controls playsinline autoplay muted loop>
+                            <source src="images/Teaser_video_selfplay_highdef.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                     <h2>Household Task Execution from Messy Dialogue</h2>
                     <p align="justify">We set a new <b>state-of-the-art in the TEACh benchmark</b>, where the agent is given a messy dialogue segment at the
                     start of the episode and an RGB sensor and is tasked to
@@ -826,66 +943,8 @@
                     </div>
                     <br>
                     <br>
-                    <h3 align="justify">Task Videos</h3>
-                    <div class="container">
-                        <div class="column-left">Water plant</div>
-                        <div class="column-right">Prepare coffee in a clean mug</div>
-                    </div>
-                    <!-- <div class="w3-center">
-                        <video width="90%" controls playsinline muted>
-                            <source src="images/task_videos/outputc66573f82df8618c_aad3.tfd_c66573f82df8618c_aad3_Full.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div> -->
-                    <div id="wrapper">
-                        <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
-                            <source type="video/mp4" src="images/task_videos/612f99763b6978b6_0c1a.tfd_612f99763b6978b6_0c1a_52_fcd65c4a22cb59a8e4ad.mp4" />
-                        </video>
-                        <!-- <p>Content above your video</p> -->
-                        <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
-                            <source type="video/mp4" src="images/task_videos/7688a09fa6b789ca_6db5.tfd_7688a09fa6b789ca_6db5_61_db7943b97465ca20954f.mp4" />
-                        </video>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="container">
-                        <div class="column-left">Put all credit cards on the bed</div>
-                        <div class="column-right">Put a slice of lettuce on a clean plate</div>
-                    </div>
-                    <!-- <div class="container">
-                        <div class="column-left">Put all credit cards on the bed</div>
-                        <div class="column-right" align="justify"><small><font color="#1B58E4">Input Language</font> Driver: hi, how can I help you?
-                            Commander: please serve one slice of lettuce on a plate
-                                Driver: sure
-                                    Driver: good?</small></div>
-                    </div> -->
-                    <div id="wrapper">
-                        <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
-                            <source type="video/mp4"
-                                src="images/task_videos/8463e3c141964336_c9cc.tfd_8463e3c141964336_c9cc_69_7a9e16fc939574b527cb.mp4" />
-                        </video>
-                        <!-- <p>Content above your video</p> -->
-                        <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
-                            <source type="video/mp4"
-                                src="images/task_videos/2f8d482d22e56fdd_3e5c.tfd_2f8d482d22e56fdd_3e5c_188_bb2f62c23329a80458cc.mp4" />
-                        </video>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="container">
-                        <div class="column-left">Clean all plates</div>
-                        <div class="column-right">Put all sports equipment on the bed</div>
-                    </div>
-                    <div id="wrapper">
-                        <video id="home1" width="49%" poster="images/video.jpg" controls="controls" preload="none">
-                            <source type="video/mp4"
-                                src="images/task_videos/823f0fe4bda8607c_ee5e.tfd_823f0fe4bda8607c_ee5e_285_89fd71070236d5d8630b.mp4" />
-                        </video>
-                        <!-- <p>Content above your video</p> -->
-                        <video id="home2" width="49%" poster="images/video.jpg" controls="controls" preload="none">
-                            <source type="video/mp4"
-                                src="images/task_videos/f892b2976d0955e0_b0d9.tfd_f892b2976d0955e0_b0d9_329_f53d766de44f3fd422ec.mp4" />
-                        </video>
-                        <div class="clear"></div>
-                    </div>
+                    <!-- <h3 align="justify">Task Videos</h3> -->
+                    
                     <!-- <h3 align="justify">TODO: ADD MORE VIDEOS & TASKS HERE</h3> -->
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
@@ -895,7 +954,7 @@
                     <p align="justify">HELPER expands its
                     memory of programs with successful executions of user specific procedures; it then
                     recalls them and adapt them in future interactions with the user, allowing for user-personalized references.</p>
-                    <img src="images/user_personal_feedback_V2.jpg" style="width:100%">
+                    <!-- <img src="images/user_personal_feedback_V2.jpg" style="width:70%"> -->
                     <p align="justify">We test HELPER on its ability retrieve a personalized routines and adapt them to accomodate zero,
                         one, two, or three changes (10 each) from the original plan. <b>Of the 40 inputs tested, HELPER successfully
                             recalled and adapted all but three personalized routines.</b></p>
@@ -920,7 +979,7 @@
                     robot’s performance, but frequently requesting
                     feedback on a task can diminish the overall user experience. Thus, we enable HELPER to elicit sparse
                     user feedback only when it has completed execution of the program from the initial user input. <b>HELPER improves an additional 1.3X in task success when incorporating just two user feedbacks.</b></p>
-                    <img src="images/User_Feedback.jpg" style="width:100%">
+                    <img src="images/User_Feedback.jpg" style="width:70%">
                     <br>
                     <br>
                     <p align="justify"><b>VIDEO:</b> Clean all cookware with user feedback (skip to 0:41 for user feedback saying HELPER missed cleaning the pot)</p>
