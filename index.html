@@ -31,7 +31,8 @@
         h4,
         h5,
         h6 {
-            font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            /* font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+            font-family: 'Lato';
         }
 
         .cite {
@@ -66,12 +67,14 @@
     <style>
         html,
         body {
-            font-family: 'GT Ultra', sans-serif !important;
-            font-weight: 200;
+            /* font-family: 'GT Ultra', sans-serif !important; */
+            font-family: 'Lato' !important;
+            font-weight: 400;
             font-size: 18px;
             overflow-x: hidden;
             box-sizing: border-box;
-            color: #1f1e1d;
+            /* color: #1f1e1d; */
+            color: #000000;
             background-color: #f5ece5;
         }
 
@@ -89,7 +92,7 @@
             /* color: #276FBF !important; */
             color: #276FBF;
             text-decoration: none;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         a:hover {
@@ -741,16 +744,17 @@
                 TEACh benchmark</b> in both Execution from Dialog History (EDH) and Trajectory from Dialogue (TfD), with <b>1.7x improvement
                 over the previous SOTA for TfD.</b></p>
                 <br>
-                <hr>
+                <br>
+                <!-- <hr> -->
                 <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
                     <!-- <h2>What can HELPER do?</h2> -->
-                    <h2>How does HELPER work?</h2>
+                    <!-- <h2>How does HELPER work?</h2>
                     <p align="justify">We enhance Large Language Models (LLMs) with an external memory storing language-program pairs for in-context example
                     retrieval during task plan generation. The model processes instructions, dialogues, corrections, and visual environment
                     descriptions, retrieving pertinent memories for context-aware predictions of task plans and their adjustments. Our agent
                     implements these plans through visual input, utilizing map building, 3D object detection, state tracking, and active
                     exploration guided by the LLM's common sense for object location. Successful programs, paired with their linguistic
-                    context, are archived in memory, facilitating personalized future interactions.</p>
+                    context, are archived in memory, facilitating personalized future interactions.</p> -->
                     <div class="w3-center">
                         <video width="100%" playsinline autoplay muted loop poster="images/Figure1_Revised_V12.jpg">
                             <source src="images/Figure1_Video_V2_cropped.mp4" type="video/mp4">
@@ -795,7 +799,7 @@
                         for pretrained LLMs based on the current
                         language context</b>.</p>
                     <!-- <img src="images/PlannerCombinedFigure_V5_katefversion2_combinedwfeedbackpersonal_V3.jpg" style="width:100%"> -->
-                    <img src="images/WEBSITE_PlannerCombinedFigure_A.jpg" style="width:60%">
+                    <img src="images/WEBSITE_Memory_straight.jpg" style="width:100%">
                     <br>
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
@@ -806,7 +810,7 @@
                         interpreting human feedback.</p>
                     <img src="images/WEBSITE_PlannerCombinedFigure_B.jpg" style="width:100%">
                     <br>
-                    <br>
+                    <!-- <br>
                     <br>
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
@@ -816,7 +820,7 @@
                     obtain an action failure reason</b> and uses it to
                     retrieve similar failure cases with solutions for
                     memory-augmented LLM failure correction.</p>
-                    <img src="images/Rectifier_Figure_V1.jpg" style="width:70%">
+                    <img src="images/Rectifier_Figure_V1.jpg" style="width:70%"> -->
                     
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
@@ -833,12 +837,9 @@
                     <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
                     <h3 align="center">Household Task Execution from Messy Dialogue</h3>
-                    <p align="justify">We set a new <b>state-of-the-art in the TEACh benchmark</b>, where the agent is given a messy dialogue segment at the
-                    start of the episode and an RGB sensor and is tasked to
-                    infer the sequence of actions to execute based on
-                    the user’s intents in the dialogue segment, ranging
-                    from MAKE COFFEE to PREPARE BREAKFAST. <b>HELPER improves
-                    Trajectory from Dialogue (TfD) task success by 1.7x and goal-condition success by 2.1x over existing works with minimal
+                    <p align="justify">We set a new <b>state-of-the-art in the TEACh benchmark</b>, where the agent is given a messy dialogue segment and is tasked to
+                    infer the sequence of actions from RGB. HELPER improves
+                    Trajectory from Dialogue (TfD) task success by <b>1.7x and goal-condition success by 2.1x over existing works with minimal
                     in-domain finetuning.</b></p>
                     <p align="center">TEACh TfD Validation Unseen Performance</p>
                     <img src="images/Table_TfD_Unseen.jpg" style="width:80%">
@@ -848,7 +849,7 @@
                     <br>
                     <h4 align="center">Make a salad demo with module visualizations</h4>
                     <div class="w3-center">
-                        <video width="80%" controls playsinline muted>
+                        <video width="80%" controls playsinline muted loop>
                             <source src="images/Full Task video with task text.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -857,7 +858,7 @@
                     <br>
                     <h4 align="center">Error correction demo with module visualizations</h4>
                     <div class="w3-center">
-                        <video width="80%" controls playsinline muted>
+                        <video width="80%" controls playsinline muted loop>
                             <source src="images/Failure_video_HELPER2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -881,14 +882,14 @@
                     <br> -->
                     <p align="center"><b>Demo:</b> Clean all cookware with user feedback<br>(skip to 0:41 for user feedback saying HELPER
                         missed cleaning the pot)</p>
-                    <video controls muted width="50%" poster="images/user_feedback_thumbnail.jpg">
+                    <video controls playsinline autoplay muted loop width="50%" poster="images/user_feedback_thumbnail.jpg">
                         <source src="images/task_videos_new/4f4013ceab294a80_3864.tfd_4f4013ceab294a80_3864_145_e31f2cd6a8b6545446fa.mp4" type="video/mp4" />
                     </video>
                     <br>
                     <br>
                     <p align="center"><b>Demo:</b> Make breakfast with user feedback<br>(skip to 2:54 for user feedback saying did not put
                         tomato & lettuce slice on plate)</p>
-                    <video controls muted width="50%" poster="images/user_feedback_thumbnail.jpg">
+                    <video controls playsinline autoplay muted loop width="50%" poster="images/user_feedback_thumbnail.jpg">
                         <source src="images/task_videos_new/c66573f82df8618c_aad3.tfd_c66573f82df8618c_aad3_80_b5980228dfd5fc4d1ce9.mp4"
                             type="video/mp4" />
                     </video>
