@@ -745,16 +745,7 @@
                 over the previous SOTA for TfD.</b></p>
                 <br>
                 <br>
-                <!-- <hr> -->
                 <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
-                    <!-- <h2>What can HELPER do?</h2> -->
-                    <!-- <h2>How does HELPER work?</h2>
-                    <p align="justify">We enhance Large Language Models (LLMs) with an external memory storing language-program pairs for in-context example
-                    retrieval during task plan generation. The model processes instructions, dialogues, corrections, and visual environment
-                    descriptions, retrieving pertinent memories for context-aware predictions of task plans and their adjustments. Our agent
-                    implements these plans through visual input, utilizing map building, 3D object detection, state tracking, and active
-                    exploration guided by the LLM's common sense for object location. Successful programs, paired with their linguistic
-                    context, are archived in memory, facilitating personalized future interactions.</p> -->
                     <div class="w3-center">
                         <video width="100%" playsinline autoplay muted loop poster="images/Figure1_Revised_V12.jpg">
                             <source src="images/Figure1_Video_V2_cropped.mp4" type="video/mp4">
@@ -762,33 +753,6 @@
                         </video>
                     </div>
                     <br>
-                    <!-- <br>
-                    <spacer type="horizontal" width="100" height="50"> </spacer>
-                    <br> -->
-                    <!-- <h3 align="center">Framework Overview</h3>
-                    <p align="justify">Helper is an an embodied agent
-                    equipped with as external memory of language-program pairs that parses free-form human-robot dialogue into action programs through
-                    retrieval-augmented LLM prompting. The programs are then translated into specific
-                    navigation and manipulation actions from RGB input.</p> -->
-                    <!-- <p align="justify">Helper is made up of the following modules:</p> -->
-                    <!-- <img src="images/Full_Pipeline_Figure_V4.jpg" style="width:60%"> -->
-                    <!-- <p align="justify"> -->
-                    <!-- <ol>
-                    <li align="justify"><b>PLANNER</b>: The PLANNER obtains the most relevant task plans from memory to prompt
-                    an LLM to transform user instructions, dialogue, failure reasons, or user feedback into an executable program.</li>
-                    <li align="justify"><b>Plan correction</b>: When an action fails, a pretrained vision-language model infers the failure's cause from pixel input. This
-                    inferred reason, along with the top-K most relevant error correction examples from memory, is then fed into the planner
-                    to generate a corrective program.</li>
-                    <li align="justify"><b>EXECUTOR</b>: translates each program step into specific navigation and manipulation actions. The EXECUTOR has the following sub-components:
-                        <ol type="a">
-                        <li align="justify"><b>Perception</b>: The Executor builds a semantic map using an off-the-shelf object detector and monocular depth estimation network. It detects and keeps track of object states (cooked, dirty, ...) via a vision-language model.</li>
-                        <li align="justify"><b>Action execution</b>: It executes navigation code steps by shortest path planning in the semantic obstacle map and executes manipulation code steps
-                        by calling on a set of low-level manipulation actions (pickup(X), slice(X), etc.).</li>
-                        <li align="justify"><b>Pre-condition check</b>: Verifies if the necessary preconditions for an action, and the plan is adjusted according to the current environmental and agent state.</li>
-                        <li align="justify"><b>LOCATOR</b>: The LOCATOR module efficiently searches for a required object by utilizing previous user instructions and LLMs' commonsense knowledge.</li>
-                        </ol>
-                    </li>
-                    </ol> -->
                     </p>
                     <br>
                     <br>
@@ -798,7 +762,6 @@
                     <p align="justify">A key component of HELPER is its <b>memory of language-program pairs</b> to generate <b>tailored prompts
                         for pretrained LLMs based on the current
                         language context</b>.</p>
-                    <!-- <img src="images/PlannerCombinedFigure_V5_katefversion2_combinedwfeedbackpersonal_V3.jpg" style="width:100%"> -->
                     <img src="images/WEBSITE_memory_straight.jpg" style="width:100%">
                     <br>
                     <br>
@@ -810,18 +773,6 @@
                         interpreting human feedback.</p>
                     <img src="images/WEBSITE_PlannerCombinedFigure_B.jpg" style="width:100%">
                     <br>
-                    <!-- <br>
-                    <br>
-                    <br>
-                    <spacer type="horizontal" width="100" height="50"> </spacer>
-                    <br>
-                    <h3 align="center">Visually-Grounded Error Correction</h3>
-                    <p align="justify">HELPER uses a <b>pretrained VLM to
-                    obtain an action failure reason</b> and uses it to
-                    retrieve similar failure cases with solutions for
-                    memory-augmented LLM failure correction.</p>
-                    <img src="images/Rectifier_Figure_V1.jpg" style="width:70%"> -->
-                    
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
@@ -841,24 +792,23 @@
                     infer the sequence of actions from RGB. HELPER improves
                     TfD task success by <b>1.7x and goal-condition success by 2.1x over existing works with minimal
                     in-domain finetuning.</b></p>
-                    <!-- <p align="center">TEACh TfD Validation Unseen Performance</p> -->
                     <img src="images/WEBSITE_TFD_EDH.jpg" style="width:80%">
                     <br>
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
-                    <h4 align="center">Make a salad demo with module visualizations</h4>
+                    <h4 align="center">Task demo</h4>
                     <div class="w3-center">
-                        <video width="80%" controls playsinline muted loop>
+                        <video width="60%" controls playsinline muted loop>
                             <source src="images/Full Task video with task text.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
                     <br>
                     <br>
-                    <h4 align="center">Error correction demo with module visualizations</h4>
+                    <h4 align="center">Error correction demo</h4>
                     <div class="w3-center">
-                        <video width="80%" controls playsinline muted loop>
+                        <video width="60%" controls playsinline muted loop>
                             <source src="images/Failure_video_HELPER2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -874,12 +824,8 @@
                         feedback on a task can diminish the overall user experience. Thus, we enable HELPER to elicit sparse
                         user feedback only when it has completed execution of the program from the initial user input. <b>HELPER improves an
                             additional 1.3X in task success when incorporating just two user feedbacks.</b></p>
-                    <!-- <img src="images/User_Feedback.jpg" style="width:70%"> -->
                     <br>
                     <br>
-                    <!-- <br>
-                    <spacer type="horizontal" width="100" height="50"> </spacer>
-                    <br> -->
                     <p align="center"><b>Demo:</b> Clean all cookware with user feedback<br>(skip to 0:41 for user feedback saying HELPER
                         missed cleaning the pot)</p>
                     <video controls playsinline autoplay muted loop width="50%" poster="images/user_feedback_thumbnail.jpg">
@@ -901,7 +847,9 @@
                     <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
                     <h3 align="center">User Personalization</h3>
-                    
+                    <p align="justify">HELPER expands its
+                        memory of programs with successful executions of user specific procedures; it then
+                        recalls them and adapt them in future interactions with the user, allowing for user-personalized references.</p>
                     <div class="w3-center">
                         <video width="90%" controls playsinline autoplay muted loop poster="images/Figure1_Revised_V12.jpg">
                             <source src="images/Twitter_Video_User_personalization_cropped.mp4" type="video/mp4">
@@ -909,10 +857,7 @@
                         </video>
                     </div>
 
-                    <p align="justify">HELPER expands its
-                    memory of programs with successful executions of user specific procedures; it then
-                    recalls them and adapt them in future interactions with the user, allowing for user-personalized references.</p>
-                    <p align="justify">We test HELPER on its ability retrieve a personalized routines and adapt them to accomodate zero,
+                    <!-- <p align="justify">We test HELPER on its ability retrieve a personalized routines and adapt them to accomodate zero,
                         one, two, or three changes (10 each) from the original plan. <b>Of the 40 inputs tested, HELPER successfully
                             recalled and adapted all but three personalized routines.</b></p>
                     <p align="justify">An example sample from the evaluation is shown below of the original instruction used to generate the personalized program and add it to memory, evaluation instructions for zero, one, two, and three requested changes of
@@ -937,8 +882,14 @@
                     <br>
                     <spacer type="horizontal" width="100" height="50"> </spacer>
                     <br>
-                    <hr>
-
+                    -->
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <br>
+                <spacer type="horizontal" width="100" height="50"> </spacer>
+                <br>
+                <hr>
                 </div>
                 <h4>See our paper for more!</h4>
 
