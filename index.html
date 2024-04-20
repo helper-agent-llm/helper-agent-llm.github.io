@@ -341,6 +341,45 @@
             padding-right: 1px;
             padding-left: 6px;
         }
+
+    </style>
+
+    <!-- Paper button -->
+    <style>
+        .btn-paper-helper-x {
+            width: 130px;
+            height: 35px;
+            cursor: pointer;
+            border-radius: 25px;
+            background: transparent;
+            border: 2px solid #91C9FF;
+            outline: none;
+            transition: 1s ease-in-out;
+            text-decoration: none;
+            align-items: center;
+            display: flex;
+            text-align: center;
+            font-weight: 500;
+            color: black;
+        }
+    
+        .btn-paper-helper-x:hover {
+            transition: 0.75s ease-in-out;
+            background: #8bb2ff1e;
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+        }
+    
+        .vertical-center-paper-helper-x {
+            height: 80%;
+            position: relative;
+            /* top: 0px;
+                right: 0;
+                float: left; */
+            padding-right: 1px;
+            padding-left: 6px;
+        }
     </style>
 
     <!-- Code button -->
@@ -674,6 +713,8 @@
                     Memory-Augmented Large Language Models</h2>
                     <h5><a href="https://www.gabesarch.me">Gabriel Sarch</a> &emsp;&emsp; 
                         <a href="https://www.yuewu.ml/">Yue Wu</a> &emsp;&emsp;
+                        <a href="https://sahilsomani.net/">Sahil Somani</a> &emsp;&emsp;
+                        <a href="https://raghav1606.github.io/">Raghav Kapoor</a> &emsp;&emsp;
                         <a
                             href="https://sites.google.com/andrew.cmu.edu/tarrlab/people/michael-j-tarr">Michael
                             Tarr</a> &emsp;&emsp;
@@ -694,6 +735,9 @@
                         role="button">
                         <img src="images/paper.png" class="vertical-center-paper"> Paper
                     </a>
+                    <a href="https://openreview.net/pdf?id=QfO0PdUq8c" target="_blank" class="btn-paper-helper-x" role="button">
+                        <img src="images/paper.png" class="vertical-center-paper-helper-x"> HELPER-X
+                    </a>
                     <a href="https://github.com/Gabesarch/HELPER" target="_blank" class="btn-code"
                         role="button">
                         <img src="images/code.png" class="vertical-center-code"> Code
@@ -702,6 +746,15 @@
                         <img src="images/twitter-117.png" class="vertical-center-code"> Tweet
                     </a>
                 </div>
+
+                <hr>
+                <br>
+                
+                <p align="justify">
+                    🔥<font color="color:red;">[NEW!]</font> HELPER-X achieves Few-Shot SoTA on 4 embodied AI benchmarks (ALFRED, TEACh,
+                    DialFRED, and
+                    the Tidy Task) <em>using a single, unmodified agent</em>, with just simple modifications to the original HELPER.
+                </p>
 
                 <section class="section">
                     <div class="container is-max-widescreen">
@@ -774,6 +827,7 @@
                 <spacer type="horizontal" width="100" height="50"> </spacer>
                 <br>
                 
+                
                 <hr>
                 <div class="w3-center">
                     <h2>Abstract</h2>
@@ -787,7 +841,15 @@
                 LLM querying. The memory is expanded during deployment to include pairs of user's language and action plans, to assist
                 future inferences and personalize them to the user's language and routines. <b>HELPER sets a new state-of-the-art in the
                 TEACh benchmark</b> in both Execution from Dialog History (EDH) and Trajectory from Dialogue (TfD), with <b>1.7x improvement
-                over the previous SOTA for TfD.</b></p>
+                over the previous SOTA for TfD.</b>
+                </p>
+                <p align="justify">In our recently released HELPER-X, we extend the capabilities of HELPER, by expanding its memory with a wider array of examples and prompts, and by
+                integrating additional APIs for asking questions. This simple expansion of HELPER into a shared memory enables the agent to work across the domains of executing plans
+                from dialogue, natural language instruction following, active question asking, and commonsense room reorganization. We
+                evaluate the agent on four diverse interactive visual-language embodied agent benchmarks: ALFRED, TEACh, DialFRED, and
+                the Tidy Task. <b>HELPER-X achieves few-shot, state-of-the-art performance across these benchmarks using a single agent, without requiring
+                in-domain training, and remains competitive with agents that have undergone in-domain training.</b> 
+                </p>
                 <br>
                 <br>
                 <div class="w3-display-container w3-row w3-white w3-margin-bottom w3-center">
@@ -901,6 +963,34 @@
                             Your browser does not support the video tag.
                         </video>
                     </div>
+                    <br>
+                    <br>
+                    <spacer type="horizontal" width="100" height="50"> </spacer>
+                    <br>
+                    <br>
+                    <spacer type="horizontal" width="100" height="50"> </spacer>
+                    <br>
+                    <br>
+                    <spacer type="horizontal" width="100" height="50"> </spacer>
+                    <br>
+                    <hr>
+                    <h2>HELPER-X</h2>
+                    <br>
+                    <img src="images/‎Figure1.jpg" style="width:60%">
+                    <br>
+                    <br>
+                    <p align="justify">In HELPER-X, we extend HELPER to work across the domains of executing plans from dialogue, natural language instruction following, active question asking, and
+                    commonsense room reorganization.. We propose two versions to extend the
+                    memory-augmented prompting of LLMs in HELPER: 1) HELPER-X<sub>p</sub> that retrieves from a memory of domain-tailored
+                    prompt templates and associated domain-specific examples, and 2) HELPER-X<sub>s</sub> that
+                    expands the memory of HELPER into a shared memory of in-context examples across domains combined with a
+                    domain-agnostic prompt template. Additionally, we extend the capabilities of HELPER
+                    for question asking, by appending a question API with functions defining possible questions and their arguments to the
+                    LLM prompt.</p>
+                    <p align="justify">HELPER-X achieves few-shot, state-of-the-art performance across the four benchmarks using a single agent, without requiring
+                    in-domain training, and remains competitive with agents that have undergone in-domain training.</p>
+                    <br>
+                    <img src="images/helper-x-results.jpg" style="width:100%">
 
                     <!-- <p align="justify">We test HELPER on its ability retrieve a personalized routines and adapt them to accomodate zero,
                         one, two, or three changes (10 each) from the original plan. <b>Of the 40 inputs tested, HELPER successfully
@@ -936,7 +1026,7 @@
                 <br>
                 <hr>
                 </div>
-                <h4>See our paper for more!</h4>
+                <h4>See our papers for more!</h4>
 
 
                 <section id="citation">
@@ -950,6 +1040,15 @@
                         Fragkiadaki, Katerina",
                         booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2023",
                         year = "2023"}
+                    </font></code></pre>
+                    </div>
+                    <div class="cit_cont">
+                    <pre style="background-color:#F5F5F5;"><code><font size="-1">@inproceedings{sarch2024helperx,
+                        title = "HELPER-X: A Unified Instructable Embodied Agent to Tackle Four Interactive Vision-Language Domains with Memory-Augmented
+                        Language Models",
+                        author = "Sarch, Gabriel and Somani, Sahil and Kapoor, Raghav and Tarr, Michael J and Fragkiadaki, Katerina",
+                        booktitle = "ICLR 2024 LLMAgents Workshop",
+                        year = "2024"}
                     </font></code></pre>
                     </div>
                 </section>
